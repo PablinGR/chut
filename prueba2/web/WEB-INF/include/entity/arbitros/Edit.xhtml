@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ArbitrosEditDlg" widgetVar="ArbitrosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditArbitrosTitle}" closeOnEscape="true">
+
+            <h:form id="ArbitrosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{arbitrosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditArbitrosLabel_cedulaarbitro}" for="cedulaarbitro" />
+                        <h:outputText id="cedulaarbitro" value="#{arbitrosController.selected.cedulaarbitro}" />
+
+                        <p:outputLabel value="#{myBundle.EditArbitrosLabel_nombrearbitro}" for="nombrearbitro" />
+                        <p:inputText id="nombrearbitro" value="#{arbitrosController.selected.nombrearbitro}" title="#{myBundle.EditArbitrosTitle_nombrearbitro}" required="true" requiredMessage="#{myBundle.EditArbitrosRequiredMessage_nombrearbitro}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditArbitrosLabel_idcampeonato}" for="idcampeonato" />
+                        <p:selectOneMenu id="idcampeonato" value="#{arbitrosController.selected.idcampeonato}" required="true" requiredMessage="#{myBundle.EditArbitrosRequiredMessage_idcampeonato}" converter="campeonatosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{campeonatosController.items}"
+                                           var="idcampeonatoItem"
+                                           itemValue="#{idcampeonatoItem}"
+                                           itemLabel="#{idcampeonatoItem.descripcioncampeonato.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{arbitrosController.save}" value="#{myBundle.Save}" update="display,:ArbitrosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ArbitrosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ArbitrosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

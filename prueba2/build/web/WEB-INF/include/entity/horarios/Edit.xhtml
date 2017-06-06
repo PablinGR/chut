@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="HorariosEditDlg" widgetVar="HorariosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditHorariosTitle}" closeOnEscape="true">
+
+            <h:form id="HorariosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{horariosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditHorariosLabel_idhorario}" for="idhorario" />
+                        <h:outputText id="idhorario" value="#{horariosController.selected.idhorario}" />
+
+                        <p:outputLabel value="#{myBundle.EditHorariosLabel_descripcionhorario}" for="descripcionhorario" />
+                        <p:inputText id="descripcionhorario" value="#{horariosController.selected.descripcionhorario}" title="#{myBundle.EditHorariosTitle_descripcionhorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_descripcionhorario}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditHorariosLabel_iniciohorario}" for="iniciohorario" />
+                        <p:calendar id="iniciohorario" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.iniciohorario}" title="#{myBundle.EditHorariosTitle_iniciohorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_iniciohorario}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditHorariosLabel_finhorario}" for="finhorario" />
+                        <p:calendar id="finhorario" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.finhorario}" title="#{myBundle.EditHorariosTitle_finhorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_finhorario}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horariosController.save}" value="#{myBundle.Save}" update="display,:HorariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('HorariosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('HorariosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

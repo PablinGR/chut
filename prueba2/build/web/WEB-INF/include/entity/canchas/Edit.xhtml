@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CanchasEditDlg" widgetVar="CanchasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditCanchasTitle}" closeOnEscape="true">
+
+            <h:form id="CanchasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{canchasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditCanchasLabel_idcancha}" for="idcancha" />
+                        <h:outputText id="idcancha" value="#{canchasController.selected.idcancha}" />
+
+                        <p:outputLabel value="#{myBundle.EditCanchasLabel_descripcioncancha}" for="descripcioncancha" />
+                        <p:inputText id="descripcioncancha" value="#{canchasController.selected.descripcioncancha}" title="#{myBundle.EditCanchasTitle_descripcioncancha}" required="true" requiredMessage="#{myBundle.EditCanchasRequiredMessage_descripcioncancha}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditCanchasLabel_sectorcancha}" for="sectorcancha" />
+                        <p:inputText id="sectorcancha" value="#{canchasController.selected.sectorcancha}" title="#{myBundle.EditCanchasTitle_sectorcancha}" required="true" requiredMessage="#{myBundle.EditCanchasRequiredMessage_sectorcancha}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditCanchasLabel_propietariosCollection}" for="propietariosCollection" />
+                        <p:selectManyMenu id="propietariosCollection" value="#{canchasController.selected.propietariosCollection}"  converter="propietariosConverter">
+                            <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                            <f:selectItems value="#{propietariosController.items}"
+                                           var="propietariosCollectionItem"
+                                           itemValue="#{propietariosCollectionItem}"
+                                           itemLabel="#{propietariosCollectionItem.cedulapropietarios.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{canchasController.save}" value="#{myBundle.Save}" update="display,:CanchasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CanchasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CanchasEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

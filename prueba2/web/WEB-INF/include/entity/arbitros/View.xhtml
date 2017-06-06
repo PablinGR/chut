@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArbitrosViewDlg" widgetVar="ArbitrosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewArbitrosTitle}" closeOnEscape="true">
+
+            <h:form id="ArbitrosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{arbitrosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewArbitrosLabel_cedulaarbitro}"/>
+                        <h:outputText value="#{arbitrosController.selected.cedulaarbitro}" title="#{myBundle.ViewArbitrosTitle_cedulaarbitro}"/>
+
+                        <h:outputText value="#{myBundle.ViewArbitrosLabel_nombrearbitro}"/>
+                        <h:outputText value="#{arbitrosController.selected.nombrearbitro}" title="#{myBundle.ViewArbitrosTitle_nombrearbitro}"/>
+
+                        <h:outputText value="#{myBundle.ViewArbitrosLabel_idcampeonato}"/>
+                        <h:outputText value="#{arbitrosController.selected.idcampeonato.descripcioncampeonato}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ArbitrosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

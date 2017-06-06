@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JugadoresViewDlg" widgetVar="JugadoresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewJugadoresTitle}" closeOnEscape="true">
+
+            <h:form id="JugadoresViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{jugadoresController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewJugadoresLabel_cedulajugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.cedulajugador}" title="#{myBundle.ViewJugadoresTitle_cedulajugador}"/>
+
+                        <h:outputText value="#{myBundle.ViewJugadoresLabel_nombrejugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.nombrejugador}" title="#{myBundle.ViewJugadoresTitle_nombrejugador}"/>
+
+                        <h:outputText value="#{myBundle.ViewJugadoresLabel_celularjugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.celularjugador}" title="#{myBundle.ViewJugadoresTitle_celularjugador}"/>
+
+                        <h:outputText value="#{myBundle.ViewJugadoresLabel_mailjugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.mailjugador}" title="#{myBundle.ViewJugadoresTitle_mailjugador}"/>
+
+                        <h:outputText value="#{myBundle.ViewJugadoresLabel_idequipo}"/>
+                        <h:outputText value="#{jugadoresController.selected.idequipo.descripcionequipo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('JugadoresViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

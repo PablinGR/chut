@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CampeonatosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditCampeonatosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:CampeonatosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CampeonatosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{campeonatosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditCampeonatosLabel_idcampeonato}" for="idcampeonato" />
+                            <h:outputText id="idcampeonato" value="#{campeonatosController.selected.idcampeonato}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
+                            <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.EditCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
+                            <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.EditCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
+                            <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.EditCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_celularcampeonato}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
+                            <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.EditCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_premiocampeonato}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditCampeonatosLabel_patrocinadoresCollection}" for="patrocinadoresCollection" />
+                            <p:selectManyMenu id="patrocinadoresCollection" value="#{campeonatosController.selected.patrocinadoresCollection}"  converter="patrocinadoresConverter">
+                                <f:selectItems value="#{patrocinadoresController.items}"
+                                               var="patrocinadoresCollectionItem"
+                                               itemValue="#{patrocinadoresCollectionItem}"
+                                               itemLabel="#{patrocinadoresCollectionItem.descripcionpatrocinador.toString()}"
+                                               />
+
+                            </p:selectManyMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{campeonatosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:CampeonatosListPage:CampeonatosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:CampeonatosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

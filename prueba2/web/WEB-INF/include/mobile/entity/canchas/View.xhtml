@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CanchasViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewCanchasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:CanchasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CanchasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{canchasController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCanchasLabel_idcancha}"/>
+                            <h:outputText value="#{canchasController.selected.idcancha}" title="#{myBundle.ViewCanchasTitle_idcancha}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCanchasLabel_descripcioncancha}"/>
+                            <h:outputText value="#{canchasController.selected.descripcioncancha}" title="#{myBundle.ViewCanchasTitle_descripcioncancha}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCanchasLabel_sectorcancha}"/>
+                            <h:outputText value="#{canchasController.selected.sectorcancha}" title="#{myBundle.ViewCanchasTitle_sectorcancha}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewCanchasLabel_propietariosCollection}"/>
+                            <h:selectManyMenu converter="propietariosConverter">
+                                <f:selectItems value="#{canchasController.selected.propietariosCollection}"
+                                               var="propietariosCollectionItem"
+                                               itemValue="#{propietariosCollectionItem}"
+                                               itemLabel="#{propietariosCollectionItem.cedulapropietarios.toString()}"
+                                               />
+
+                            </h:selectManyMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

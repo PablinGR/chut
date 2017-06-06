@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampeonatosViewDlg" widgetVar="CampeonatosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewCampeonatosTitle}" closeOnEscape="true">
+
+            <h:form id="CampeonatosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{campeonatosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_idcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.idcampeonato}" title="#{myBundle.ViewCampeonatosTitle_idcampeonato}"/>
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_descripcioncampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.ViewCampeonatosTitle_descripcioncampeonato}"/>
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_mailcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.ViewCampeonatosTitle_mailcampeonato}"/>
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_celularcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.ViewCampeonatosTitle_celularcampeonato}"/>
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_premiocampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.ViewCampeonatosTitle_premiocampeonato}"/>
+
+                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_patrocinadoresCollection}"/>
+                        <h:selectManyMenu converter="patrocinadoresConverter">
+                            <f:selectItems value="#{campeonatosController.selected.patrocinadoresCollection}"
+                                           var="patrocinadoresCollectionItem"
+                                           itemValue="#{patrocinadoresCollectionItem}"
+                                           itemLabel="#{patrocinadoresCollectionItem.descripcionpatrocinador.toString()}"
+                                           />
+
+                        </h:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('CampeonatosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

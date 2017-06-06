@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PartidosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePartidosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PartidosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PartidosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{partidosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePartidosLabel_idpartido}" for="idpartido" />
+                            <p:inputText id="idpartido" value="#{partidosController.selected.idpartido}" title="#{myBundle.CreatePartidosTitle_idpartido}" required="true" requiredMessage="#{myBundle.CreatePartidosRequiredMessage_idpartido}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePartidosLabel_fechapartido}" for="fechapartido" />
+                            <p:calendar id="fechapartido" pattern="MM/dd/yyyy HH:mm:ss" value="#{partidosController.selected.fechapartido}" title="#{myBundle.CreatePartidosTitle_fechapartido}" required="true" requiredMessage="#{myBundle.CreatePartidosRequiredMessage_fechapartido}" showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePartidosLabel_idcancha}" for="idcancha" />
+                            <p:selectOneMenu id="idcancha" value="#{partidosController.selected.idcancha}" required="true" requiredMessage="#{myBundle.CreatePartidosRequiredMessage_idcancha}" converter="canchasConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{canchasController.items}"
+                                               var="idcanchaItem"
+                                               itemValue="#{idcanchaItem}"
+                                               itemLabel="#{idcanchaItem.descripcioncancha.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePartidosLabel_idequipo}" for="idequipo" />
+                            <p:selectOneMenu id="idequipo" value="#{partidosController.selected.idequipo}" required="true" requiredMessage="#{myBundle.CreatePartidosRequiredMessage_idequipo}" converter="equiposConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{equiposController.items}"
+                                               var="idequipoItem"
+                                               itemValue="#{idequipoItem}"
+                                               itemLabel="#{idequipoItem.descripcionequipo.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{partidosController.saveNew}" value="#{myBundle.Save}" update="display,:PartidosListPage:PartidosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PartidosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

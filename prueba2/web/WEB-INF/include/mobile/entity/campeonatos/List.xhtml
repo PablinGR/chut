@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CampeonatosListPage">
+        <pm:header title="#{myBundle.ListCampeonatosTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":CampeonatosCreatePage:CampeonatosCreateForm" actionListener="#{campeonatosController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:CampeonatosCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CampeonatosListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{campeonatosController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCampeonatosTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":CampeonatosEditPage:CampeonatosEditForm" action="pm:CampeonatosEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.idcampeonato}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.descripcioncampeonato}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.mailcampeonato}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.celularcampeonato}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.premiocampeonato}"/>
+
+
+
+
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{campeonatosController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListCampeonatosTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

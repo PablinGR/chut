@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampeonatosCreateDlg" widgetVar="CampeonatosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateCampeonatosTitle}" closeOnEscape="true">
+
+            <h:form id="CampeonatosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{campeonatosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_idcampeonato}" for="idcampeonato" />
+                        <p:inputText id="idcampeonato" value="#{campeonatosController.selected.idcampeonato}" title="#{myBundle.CreateCampeonatosTitle_idcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_idcampeonato}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
+                        <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.CreateCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
+                        <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.CreateCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
+                        <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.CreateCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_celularcampeonato}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
+                        <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.CreateCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_premiocampeonato}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_patrocinadoresCollection}" for="patrocinadoresCollection" />
+                        <p:selectManyMenu id="patrocinadoresCollection" value="#{campeonatosController.selected.patrocinadoresCollection}"  converter="patrocinadoresConverter">
+                            <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                            <f:selectItems value="#{patrocinadoresController.items}"
+                                           var="patrocinadoresCollectionItem"
+                                           itemValue="#{patrocinadoresCollectionItem}"
+                                           itemLabel="#{patrocinadoresCollectionItem.descripcionpatrocinador.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campeonatosController.saveNew}" value="#{myBundle.Save}" update="display,:CampeonatosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CampeonatosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CampeonatosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

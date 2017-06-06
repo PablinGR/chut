@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ArbitrosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateArbitrosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ArbitrosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ArbitrosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{arbitrosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateArbitrosLabel_cedulaarbitro}" for="cedulaarbitro" />
+                            <p:inputText id="cedulaarbitro" value="#{arbitrosController.selected.cedulaarbitro}" title="#{myBundle.CreateArbitrosTitle_cedulaarbitro}" required="true" requiredMessage="#{myBundle.CreateArbitrosRequiredMessage_cedulaarbitro}" size="10" maxlength="10"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateArbitrosLabel_nombrearbitro}" for="nombrearbitro" />
+                            <p:inputText id="nombrearbitro" value="#{arbitrosController.selected.nombrearbitro}" title="#{myBundle.CreateArbitrosTitle_nombrearbitro}" required="true" requiredMessage="#{myBundle.CreateArbitrosRequiredMessage_nombrearbitro}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateArbitrosLabel_idcampeonato}" for="idcampeonato" />
+                            <p:selectOneMenu id="idcampeonato" value="#{arbitrosController.selected.idcampeonato}" required="true" requiredMessage="#{myBundle.CreateArbitrosRequiredMessage_idcampeonato}" converter="campeonatosConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{campeonatosController.items}"
+                                               var="idcampeonatoItem"
+                                               itemValue="#{idcampeonatoItem}"
+                                               itemLabel="#{idcampeonatoItem.descripcioncampeonato.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{arbitrosController.saveNew}" value="#{myBundle.Save}" update="display,:ArbitrosListPage:ArbitrosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:ArbitrosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

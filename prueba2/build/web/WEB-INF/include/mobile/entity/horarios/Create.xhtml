@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="HorariosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateHorariosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:HorariosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="HorariosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{horariosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateHorariosLabel_idhorario}" for="idhorario" />
+                            <p:inputText id="idhorario" value="#{horariosController.selected.idhorario}" title="#{myBundle.CreateHorariosTitle_idhorario}" required="true" requiredMessage="#{myBundle.CreateHorariosRequiredMessage_idhorario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateHorariosLabel_descripcionhorario}" for="descripcionhorario" />
+                            <p:inputText id="descripcionhorario" value="#{horariosController.selected.descripcionhorario}" title="#{myBundle.CreateHorariosTitle_descripcionhorario}" required="true" requiredMessage="#{myBundle.CreateHorariosRequiredMessage_descripcionhorario}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateHorariosLabel_iniciohorario}" for="iniciohorario" />
+                            <p:calendar id="iniciohorario" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.iniciohorario}" title="#{myBundle.CreateHorariosTitle_iniciohorario}" required="true" requiredMessage="#{myBundle.CreateHorariosRequiredMessage_iniciohorario}" showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateHorariosLabel_finhorario}" for="finhorario" />
+                            <p:calendar id="finhorario" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.finhorario}" title="#{myBundle.CreateHorariosTitle_finhorario}" required="true" requiredMessage="#{myBundle.CreateHorariosRequiredMessage_finhorario}" showOn="button"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{horariosController.saveNew}" value="#{myBundle.Save}" update="display,:HorariosListPage:HorariosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:HorariosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
