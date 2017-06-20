@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="#{myBundle.ArbitrosHeading}..." outcome="/app/arbitros/index" />
+                    <p:menuitem value="#{myBundle.CampeonatosHeading}..." outcome="/app/campeonatos/index" />
+                    <p:menuitem value="#{myBundle.CanchasHeading}..." outcome="/app/canchas/index" />
+                    <p:menuitem value="#{myBundle.EquiposHeading}..." outcome="/app/equipos/index" />
+                    <p:menuitem value="#{myBundle.HorariosHeading}..." outcome="/app/horarios/index" />
+                    <p:menuitem value="#{myBundle.JugadoresHeading}..." outcome="/app/jugadores/index" />
+                    <p:menuitem value="#{myBundle.PartidosHeading}..." outcome="/app/partidos/index" />
+                    <p:menuitem value="#{myBundle.PatrocinadoresHeading}..." outcome="/app/patrocinadores/index" />
+                    <p:menuitem value="#{myBundle.PropietariosHeading}..." outcome="/app/propietarios/index" />
+                    <p:menuitem value="#{myBundle.ReservasHeading}..." outcome="/app/reservas/index" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropietariosViewDlg" widgetVar="PropietariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPropietariosTitle}" closeOnEscape="true">
+
+            <h:form id="PropietariosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{propietariosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPropietariosLabel_cedulapropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.cedulapropietarios}" title="#{myBundle.ViewPropietariosTitle_cedulapropietarios}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropietariosLabel_nombrepropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.nombrepropietarios}" title="#{myBundle.ViewPropietariosTitle_nombrepropietarios}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropietariosLabel_celularpropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.celularpropietarios}" title="#{myBundle.ViewPropietariosTitle_celularpropietarios}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropietariosLabel_mailpropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.mailpropietarios}" title="#{myBundle.ViewPropietariosTitle_mailpropietarios}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropietariosLabel_canchasCollection}"/>
+                        <h:selectManyMenu converter="canchasConverter">
+                            <f:selectItems value="#{propietariosController.selected.canchasCollection}"
+                                           var="canchasCollectionItem"
+                                           itemValue="#{canchasCollectionItem}"
+                                           itemLabel="#{canchasCollectionItem.descripcioncancha.toString()}"
+                                           />
+
+                        </h:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PropietariosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

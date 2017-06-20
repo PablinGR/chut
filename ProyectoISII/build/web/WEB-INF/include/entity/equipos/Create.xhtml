@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EquiposCreateDlg" widgetVar="EquiposCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateEquiposTitle}" closeOnEscape="true">
+
+            <h:form id="EquiposCreateForm">
+
+                <h:panelGroup id="display" rendered="#{equiposController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_idequipo}" for="idequipo" />
+                        <p:inputText id="idequipo" value="#{equiposController.selected.idequipo}" title="#{myBundle.CreateEquiposTitle_idequipo}" required="true" requiredMessage="#{myBundle.CreateEquiposRequiredMessage_idequipo}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_descripcionequipo}" for="descripcionequipo" />
+                        <p:inputText id="descripcionequipo" value="#{equiposController.selected.descripcionequipo}" title="#{myBundle.CreateEquiposTitle_descripcionequipo}" required="true" requiredMessage="#{myBundle.CreateEquiposRequiredMessage_descripcionequipo}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_jugadoresCollection}" for="jugadoresCollection" />
+                        <p:selectManyMenu id="jugadoresCollection" value="#{equiposController.selected.jugadoresCollection}"  converter="jugadoresConverter">
+                            <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                            <f:selectItems value="#{jugadoresController.items}"
+                                           var="jugadoresCollectionItem"
+                                           itemValue="#{jugadoresCollectionItem}"
+                                           itemLabel="#{jugadoresCollectionItem.cedulajugador.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{equiposController.saveNew}" value="#{myBundle.Save}" update="display,:EquiposListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EquiposCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('EquiposCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PartidosEditDlg" widgetVar="PartidosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPartidosTitle}" closeOnEscape="true">
+
+            <h:form id="PartidosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{partidosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPartidosLabel_idpartido}" for="idpartido" />
+                        <h:outputText id="idpartido" value="#{partidosController.selected.idpartido}" />
+
+                        <p:outputLabel value="#{myBundle.EditPartidosLabel_fechapartido}" for="fechapartido" />
+                        <p:calendar id="fechapartido" pattern="MM/dd/yyyy" value="#{partidosController.selected.fechapartido}" title="#{myBundle.EditPartidosTitle_fechapartido}" required="true" requiredMessage="#{myBundle.EditPartidosRequiredMessage_fechapartido}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPartidosLabel_idequipo}" for="idequipo" />
+                        <p:selectOneMenu id="idequipo" value="#{partidosController.selected.idequipo}" required="true" requiredMessage="#{myBundle.EditPartidosRequiredMessage_idequipo}" converter="equiposConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equiposController.items}"
+                                           var="idequipoItem"
+                                           itemValue="#{idequipoItem}"
+                                           itemLabel="#{idequipoItem.descripcionequipo.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditPartidosLabel_idreserva}" for="idreserva" />
+                        <p:selectOneMenu id="idreserva" value="#{partidosController.selected.idreserva}"  converter="reservasConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservasController.items}"
+                                           var="idreservaItem"
+                                           itemValue="#{idreservaItem}"
+                                           itemLabel="#{idreservaItem.idreserva.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditPartidosLabel_idcancha}" for="idcancha" />
+                        <p:selectOneMenu id="idcancha" value="#{partidosController.selected.idcancha}"  converter="canchasConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{canchasController.items}"
+                                           var="idcanchaItem"
+                                           itemValue="#{idcanchaItem}"
+                                           itemLabel="#{idcanchaItem.descripcioncancha.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{partidosController.save}" value="#{myBundle.Save}" update="display,:PartidosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PartidosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PartidosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

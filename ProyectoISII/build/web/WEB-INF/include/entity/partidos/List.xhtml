@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PartidosListForm">
+
+        <p:panel header="#{myBundle.ListPartidosTitle}">
+            <p:contextMenu id="PartidosDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('PartidosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('PartidosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('PartidosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('PartidosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.PartidosMenuItem_canchasCollection}" icon="ui-icon-search"  action="#{partidosController.navigateCanchasCollection}" disabled="#{partidosController.isCanchasCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.PartidosMenuItem_idequipo}" icon="ui-icon-search"  actionListener="#{partidosController.prepareIdequipo}" update=":EquiposViewForm" oncomplete="PF('EquiposViewDialog').show()" disabled="#{empty partidosController.selected.idequipo}"/>  
+                <p:menuitem value="#{myBundle.PartidosMenuItem_idreserva}" icon="ui-icon-search"  actionListener="#{partidosController.prepareIdreserva}" update=":ReservasViewForm" oncomplete="PF('ReservasViewDialog').show()" disabled="#{empty partidosController.selected.idreserva}"/>  
+                <p:menuitem value="#{myBundle.PartidosMenuItem_idcancha}" icon="ui-icon-search"  actionListener="#{partidosController.prepareIdcancha}" update=":CanchasViewForm" oncomplete="PF('CanchasViewDialog').show()" disabled="#{empty partidosController.selected.idcancha}"/>  
+                <p:menuitem value="#{myBundle.PartidosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{partidosController.navigateReservasCollection}" disabled="#{partidosController.isReservasCollectionEmpty}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{partidosController.items}"
+                         lazy="false"
+                         rowKey="#{item.idpartido}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{partidosController.selected}"
+                         filteredValue="#{partidosController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{partidosController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idpartido}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PartidosDataTableContextMenu" listener="#{partidosController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PartidosDataTableContextMenu" listener="#{partidosController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{partidosController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PartidosListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idpartido}" filterBy="#{item.idpartido}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPartidosTitle_idpartido}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idpartido}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fechapartido}" filterBy="#{item.fechapartido}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPartidosTitle_fechapartido}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechapartido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idequipo.descripcionequipo}" filterBy="#{item.idequipo.descripcionequipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPartidosTitle_idequipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idequipo.descripcionequipo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idreserva.idreserva}" filterBy="#{item.idreserva.idreserva}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPartidosTitle_idreserva}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idreserva.idreserva}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idcancha.descripcioncancha}" filterBy="#{item.idcancha.descripcioncancha}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPartidosTitle_idcancha}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idcancha.descripcioncancha}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{partidosController.prepareCreate}" update=":PartidosCreateForm" oncomplete="PF('PartidosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":PartidosViewForm" oncomplete="PF('PartidosViewDialog').show()" disabled="#{empty partidosController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PartidosEditForm" oncomplete="PF('PartidosEditDialog').show()" disabled="#{empty partidosController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{partidosController.delete}" update=":growl,datalist" disabled="#{empty partidosController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>
