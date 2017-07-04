@@ -5,8 +5,8 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <resource-bundle>
-            <base-name>/MyBundle</base-name>
-            <var>myBundle</var>
+            <base-name>/MiPaquete</base-name>
+            <var>miPaquete</var>
         </resource-bundle>
         <navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
     </application>

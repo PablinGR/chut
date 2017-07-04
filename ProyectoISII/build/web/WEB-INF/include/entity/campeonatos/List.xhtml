@@ -8,16 +8,16 @@
 
     <h:form id="CampeonatosListForm">
 
-        <p:panel header="#{myBundle.ListCampeonatosTitle}">
+        <p:panel header="#{miPaquete.ListCampeonatosTitle}">
             <p:contextMenu id="CampeonatosDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('CampeonatosListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('CampeonatosListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('CampeonatosListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('CampeonatosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('CampeonatosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('CampeonatosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('CampeonatosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('CampeonatosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.CampeonatosMenuItem_patrocinadoresCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigatePatrocinadoresCollection}" disabled="#{campeonatosController.isPatrocinadoresCollectionEmpty}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.CampeonatosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateReservasCollection}" disabled="#{campeonatosController.isReservasCollectionEmpty}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.CampeonatosMenuItem_arbitrosCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateArbitrosCollection}" disabled="#{campeonatosController.isArbitrosCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CampeonatosMenuItem_patrocinadoresCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigatePatrocinadoresCollection}" disabled="#{campeonatosController.isPatrocinadoresCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CampeonatosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateReservasCollection}" disabled="#{campeonatosController.isReservasCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CampeonatosMenuItem_arbitrosCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateArbitrosCollection}" disabled="#{campeonatosController.isArbitrosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{campeonatosController.items}"
@@ -47,7 +47,7 @@
 
                 <p:column sortBy="#{item.idcampeonato}" filterBy="#{item.idcampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCampeonatosTitle_idcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_idcampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.idcampeonato}"/>
                 </p:column>
@@ -55,7 +55,7 @@
 
                 <p:column sortBy="#{item.descripcioncampeonato}" filterBy="#{item.descripcioncampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCampeonatosTitle_descripcioncampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_descripcioncampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.descripcioncampeonato}"/>
                 </p:column>
@@ -63,7 +63,7 @@
 
                 <p:column sortBy="#{item.mailcampeonato}" filterBy="#{item.mailcampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCampeonatosTitle_mailcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_mailcampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.mailcampeonato}"/>
                 </p:column>
@@ -71,7 +71,7 @@
 
                 <p:column sortBy="#{item.celularcampeonato}" filterBy="#{item.celularcampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCampeonatosTitle_celularcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_celularcampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.celularcampeonato}"/>
                 </p:column>
@@ -79,7 +79,7 @@
 
                 <p:column sortBy="#{item.premiocampeonato}" filterBy="#{item.premiocampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCampeonatosTitle_premiocampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_premiocampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.premiocampeonato}"/>
                 </p:column>
@@ -87,11 +87,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{campeonatosController.prepareCreate}" update=":CampeonatosCreateForm" oncomplete="PF('CampeonatosCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":CampeonatosViewForm" oncomplete="PF('CampeonatosViewDialog').show()" disabled="#{empty campeonatosController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":CampeonatosEditForm" oncomplete="PF('CampeonatosEditDialog').show()" disabled="#{empty campeonatosController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{campeonatosController.delete}" update=":growl,datalist" disabled="#{empty campeonatosController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{campeonatosController.prepareCreate}" update=":CampeonatosCreateForm" oncomplete="PF('CampeonatosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":CampeonatosViewForm" oncomplete="PF('CampeonatosViewDialog').show()" disabled="#{empty campeonatosController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":CampeonatosEditForm" oncomplete="PF('CampeonatosEditDialog').show()" disabled="#{empty campeonatosController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{campeonatosController.delete}" update=":growl,datalist" disabled="#{empty campeonatosController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

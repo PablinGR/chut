@@ -8,30 +8,30 @@
 
     <ui:composition>
 
-        <p:dialog id="HorariosViewDlg" widgetVar="HorariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewHorariosTitle}" closeOnEscape="true">
+        <p:dialog id="HorariosViewDlg" widgetVar="HorariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewHorariosTitle}" closeOnEscape="true">
 
             <h:form id="HorariosViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{horariosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewHorariosLabel_idhorario}"/>
-                        <h:outputText value="#{horariosController.selected.idhorario}" title="#{myBundle.ViewHorariosTitle_idhorario}"/>
+                        <h:outputText value="#{miPaquete.ViewHorariosLabel_idhorario}"/>
+                        <h:outputText value="#{horariosController.selected.idhorario}" title="#{miPaquete.ViewHorariosTitle_idhorario}"/>
 
-                        <h:outputText value="#{myBundle.ViewHorariosLabel_descripcionhorario}"/>
-                        <h:outputText value="#{horariosController.selected.descripcionhorario}" title="#{myBundle.ViewHorariosTitle_descripcionhorario}"/>
+                        <h:outputText value="#{miPaquete.ViewHorariosLabel_descripcionhorario}"/>
+                        <h:outputText value="#{horariosController.selected.descripcionhorario}" title="#{miPaquete.ViewHorariosTitle_descripcionhorario}"/>
 
-                        <h:outputText value="#{myBundle.ViewHorariosLabel_iniciohorario}"/>
-                        <h:outputText value="#{horariosController.selected.iniciohorario}" title="#{myBundle.ViewHorariosTitle_iniciohorario}">
+                        <h:outputText value="#{miPaquete.ViewHorariosLabel_iniciohorario}"/>
+                        <h:outputText value="#{horariosController.selected.iniciohorario}" title="#{miPaquete.ViewHorariosTitle_iniciohorario}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{myBundle.ViewHorariosLabel_finhorario}"/>
-                        <h:outputText value="#{horariosController.selected.finhorario}" title="#{myBundle.ViewHorariosTitle_finhorario}">
+                        <h:outputText value="#{miPaquete.ViewHorariosLabel_finhorario}"/>
+                        <h:outputText value="#{horariosController.selected.finhorario}" title="#{miPaquete.ViewHorariosTitle_finhorario}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('HorariosViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('HorariosViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

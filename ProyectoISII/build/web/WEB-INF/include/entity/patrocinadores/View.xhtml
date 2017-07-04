@@ -8,20 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="PatrocinadoresViewDlg" widgetVar="PatrocinadoresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPatrocinadoresTitle}" closeOnEscape="true">
+        <p:dialog id="PatrocinadoresViewDlg" widgetVar="PatrocinadoresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewPatrocinadoresTitle}" closeOnEscape="true">
 
             <h:form id="PatrocinadoresViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{patrocinadoresController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewPatrocinadoresLabel_rucpatrocinador}"/>
-                        <h:outputText value="#{patrocinadoresController.selected.rucpatrocinador}" title="#{myBundle.ViewPatrocinadoresTitle_rucpatrocinador}"/>
+                        <h:outputText value="#{miPaquete.ViewPatrocinadoresLabel_rucpatrocinador}"/>
+                        <h:outputText value="#{patrocinadoresController.selected.rucpatrocinador}" title="#{miPaquete.ViewPatrocinadoresTitle_rucpatrocinador}"/>
 
-                        <h:outputText value="#{myBundle.ViewPatrocinadoresLabel_descripcionpatrocinador}"/>
-                        <h:outputText value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{myBundle.ViewPatrocinadoresTitle_descripcionpatrocinador}"/>
+                        <h:outputText value="#{miPaquete.ViewPatrocinadoresLabel_descripcionpatrocinador}"/>
+                        <h:outputText value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{miPaquete.ViewPatrocinadoresTitle_descripcionpatrocinador}"/>
 
-                        <h:outputText value="#{myBundle.ViewPatrocinadoresLabel_campeonatosCollection}"/>
+                        <h:outputText value="#{miPaquete.ViewPatrocinadoresLabel_campeonatosCollection}"/>
                         <h:selectManyMenu converter="campeonatosConverter">
                             <f:selectItems value="#{patrocinadoresController.selected.campeonatosCollection}"
                                            var="campeonatosCollectionItem"
@@ -31,7 +31,7 @@
 
                         </h:selectManyMenu>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PatrocinadoresViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('PatrocinadoresViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

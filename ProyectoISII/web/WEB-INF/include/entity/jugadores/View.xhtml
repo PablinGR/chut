@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="JugadoresViewDlg" widgetVar="JugadoresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewJugadoresTitle}" closeOnEscape="true">
+        <p:dialog id="JugadoresViewDlg" widgetVar="JugadoresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewJugadoresTitle}" closeOnEscape="true">
 
             <h:form id="JugadoresViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{jugadoresController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewJugadoresLabel_cedulajugador}"/>
-                        <h:outputText value="#{jugadoresController.selected.cedulajugador}" title="#{myBundle.ViewJugadoresTitle_cedulajugador}"/>
+                        <h:outputText value="#{miPaquete.ViewJugadoresLabel_cedulajugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.cedulajugador}" title="#{miPaquete.ViewJugadoresTitle_cedulajugador}"/>
 
-                        <h:outputText value="#{myBundle.ViewJugadoresLabel_nombrejugador}"/>
-                        <h:outputText value="#{jugadoresController.selected.nombrejugador}" title="#{myBundle.ViewJugadoresTitle_nombrejugador}"/>
+                        <h:outputText value="#{miPaquete.ViewJugadoresLabel_nombrejugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.nombrejugador}" title="#{miPaquete.ViewJugadoresTitle_nombrejugador}"/>
 
-                        <h:outputText value="#{myBundle.ViewJugadoresLabel_celularjugador}"/>
-                        <h:outputText value="#{jugadoresController.selected.celularjugador}" title="#{myBundle.ViewJugadoresTitle_celularjugador}"/>
+                        <h:outputText value="#{miPaquete.ViewJugadoresLabel_celularjugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.celularjugador}" title="#{miPaquete.ViewJugadoresTitle_celularjugador}"/>
 
-                        <h:outputText value="#{myBundle.ViewJugadoresLabel_mailjugador}"/>
-                        <h:outputText value="#{jugadoresController.selected.mailjugador}" title="#{myBundle.ViewJugadoresTitle_mailjugador}"/>
+                        <h:outputText value="#{miPaquete.ViewJugadoresLabel_mailjugador}"/>
+                        <h:outputText value="#{jugadoresController.selected.mailjugador}" title="#{miPaquete.ViewJugadoresTitle_mailjugador}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('JugadoresViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('JugadoresViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="PatrocinadoresEditDlg" widgetVar="PatrocinadoresEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPatrocinadoresTitle}" closeOnEscape="true">
+        <p:dialog id="PatrocinadoresEditDlg" widgetVar="PatrocinadoresEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditPatrocinadoresTitle}" closeOnEscape="true">
 
             <h:form id="PatrocinadoresEditForm">
 
@@ -15,13 +15,13 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{patrocinadoresController.selected != null}">
 
 
-                        <h:outputLabel value="#{myBundle.EditPatrocinadoresLabel_rucpatrocinador}" for="rucpatrocinador" />
+                        <h:outputLabel value="#{miPaquete.EditPatrocinadoresLabel_rucpatrocinador}" for="rucpatrocinador" />
                         <h:outputText id="rucpatrocinador" value="#{patrocinadoresController.selected.rucpatrocinador}" />
 
-                        <p:outputLabel value="#{myBundle.EditPatrocinadoresLabel_descripcionpatrocinador}" for="descripcionpatrocinador" />
-                        <p:inputText id="descripcionpatrocinador" value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{myBundle.EditPatrocinadoresTitle_descripcionpatrocinador}" required="true" requiredMessage="#{myBundle.EditPatrocinadoresRequiredMessage_descripcionpatrocinador}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditPatrocinadoresLabel_descripcionpatrocinador}" for="descripcionpatrocinador" />
+                        <p:inputText id="descripcionpatrocinador" value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{miPaquete.EditPatrocinadoresTitle_descripcionpatrocinador}" required="true" requiredMessage="#{miPaquete.EditPatrocinadoresRequiredMessage_descripcionpatrocinador}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.EditPatrocinadoresLabel_campeonatosCollection}" for="campeonatosCollection" />
+                        <p:outputLabel value="#{miPaquete.EditPatrocinadoresLabel_campeonatosCollection}" for="campeonatosCollection" />
                         <p:selectManyMenu id="campeonatosCollection" value="#{patrocinadoresController.selected.campeonatosCollection}"  converter="campeonatosConverter">
                             <f:attribute name="collectionType" value="java.util.ArrayList"/>
                             <f:selectItems value="#{campeonatosController.items}"
@@ -32,10 +32,10 @@
 
                         </p:selectManyMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{patrocinadoresController.save}" value="#{myBundle.Save}" update="display,:PatrocinadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PatrocinadoresEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{patrocinadoresController.save}" value="#{miPaquete.Save}" update="display,:PatrocinadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PatrocinadoresEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PatrocinadoresEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('PatrocinadoresEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

@@ -8,20 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="EquiposCreateDlg" widgetVar="EquiposCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateEquiposTitle}" closeOnEscape="true">
+        <p:dialog id="EquiposCreateDlg" widgetVar="EquiposCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{miPaquete.CreateEquiposTitle}" closeOnEscape="true">
 
             <h:form id="EquiposCreateForm">
 
                 <h:panelGroup id="display" rendered="#{equiposController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_idequipo}" for="idequipo" />
-                        <p:inputText id="idequipo" value="#{equiposController.selected.idequipo}" title="#{myBundle.CreateEquiposTitle_idequipo}" required="true" requiredMessage="#{myBundle.CreateEquiposRequiredMessage_idequipo}"/>
+                        <p:outputLabel value="#{miPaquete.CreateEquiposLabel_idequipo}" for="idequipo" />
+                        <p:inputText id="idequipo" value="#{equiposController.selected.idequipo}" title="#{miPaquete.CreateEquiposTitle_idequipo}" required="true" requiredMessage="#{miPaquete.CreateEquiposRequiredMessage_idequipo}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_descripcionequipo}" for="descripcionequipo" />
-                        <p:inputText id="descripcionequipo" value="#{equiposController.selected.descripcionequipo}" title="#{myBundle.CreateEquiposTitle_descripcionequipo}" required="true" requiredMessage="#{myBundle.CreateEquiposRequiredMessage_descripcionequipo}" size="40" maxlength="40"/>
+                        <p:outputLabel value="#{miPaquete.CreateEquiposLabel_descripcionequipo}" for="descripcionequipo" />
+                        <p:inputText id="descripcionequipo" value="#{equiposController.selected.descripcionequipo}" title="#{miPaquete.CreateEquiposTitle_descripcionequipo}" required="true" requiredMessage="#{miPaquete.CreateEquiposRequiredMessage_descripcionequipo}" size="40" maxlength="40"/>
 
-                        <p:outputLabel value="#{myBundle.CreateEquiposLabel_jugadoresCollection}" for="jugadoresCollection" />
+                        <p:outputLabel value="#{miPaquete.CreateEquiposLabel_jugadoresCollection}" for="jugadoresCollection" />
                         <p:selectManyMenu id="jugadoresCollection" value="#{equiposController.selected.jugadoresCollection}"  converter="jugadoresConverter">
                             <f:attribute name="collectionType" value="java.util.ArrayList"/>
                             <f:selectItems value="#{jugadoresController.items}"
@@ -32,11 +32,11 @@
 
                         </p:selectManyMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{equiposController.saveNew}" value="#{myBundle.Save}" update="display,:EquiposListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EquiposCreateDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{equiposController.saveNew}" value="#{miPaquete.Save}" update="display,:EquiposListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EquiposCreateDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('EquiposCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('EquiposCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

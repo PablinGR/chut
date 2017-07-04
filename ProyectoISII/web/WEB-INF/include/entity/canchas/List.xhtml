@@ -8,16 +8,16 @@
 
     <h:form id="CanchasListForm">
 
-        <p:panel header="#{myBundle.ListCanchasTitle}">
+        <p:panel header="#{miPaquete.ListCanchasTitle}">
             <p:contextMenu id="CanchasDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('CanchasListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('CanchasListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('CanchasListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('CanchasListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('CanchasListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('CanchasListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('CanchasListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('CanchasListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.CanchasMenuItem_propietariosCollection}" icon="ui-icon-search"  action="#{canchasController.navigatePropietariosCollection}" disabled="#{canchasController.isPropietariosCollectionEmpty}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.CanchasMenuItem_idpartido}" icon="ui-icon-search"  actionListener="#{canchasController.prepareIdpartido}" update=":PartidosViewForm" oncomplete="PF('PartidosViewDialog').show()" disabled="#{empty canchasController.selected.idpartido}"/>  
-                <p:menuitem value="#{myBundle.CanchasMenuItem_partidosCollection}" icon="ui-icon-search"  action="#{canchasController.navigatePartidosCollection}" disabled="#{canchasController.isPartidosCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CanchasMenuItem_propietariosCollection}" icon="ui-icon-search"  action="#{canchasController.navigatePropietariosCollection}" disabled="#{canchasController.isPropietariosCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CanchasMenuItem_idpartido}" icon="ui-icon-search"  actionListener="#{canchasController.prepareIdpartido}" update=":PartidosViewForm" oncomplete="PF('PartidosViewDialog').show()" disabled="#{empty canchasController.selected.idpartido}"/>  
+                <p:menuitem value="#{miPaquete.CanchasMenuItem_partidosCollection}" icon="ui-icon-search"  action="#{canchasController.navigatePartidosCollection}" disabled="#{canchasController.isPartidosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{canchasController.items}"
@@ -47,7 +47,7 @@
 
                 <p:column sortBy="#{item.idcancha}" filterBy="#{item.idcancha}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCanchasTitle_idcancha}"/>
+                        <h:outputText value="#{miPaquete.ListCanchasTitle_idcancha}"/>
                     </f:facet>
                     <h:outputText value="#{item.idcancha}"/>
                 </p:column>
@@ -55,7 +55,7 @@
 
                 <p:column sortBy="#{item.descripcioncancha}" filterBy="#{item.descripcioncancha}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCanchasTitle_descripcioncancha}"/>
+                        <h:outputText value="#{miPaquete.ListCanchasTitle_descripcioncancha}"/>
                     </f:facet>
                     <h:outputText value="#{item.descripcioncancha}"/>
                 </p:column>
@@ -63,7 +63,7 @@
 
                 <p:column sortBy="#{item.sectorcancha}" filterBy="#{item.sectorcancha}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCanchasTitle_sectorcancha}"/>
+                        <h:outputText value="#{miPaquete.ListCanchasTitle_sectorcancha}"/>
                     </f:facet>
                     <h:outputText value="#{item.sectorcancha}"/>
                 </p:column>
@@ -71,7 +71,7 @@
 
                 <p:column sortBy="#{item.idpartido.idpartido}" filterBy="#{item.idpartido.idpartido}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListCanchasTitle_idpartido}"/>
+                        <h:outputText value="#{miPaquete.ListCanchasTitle_idpartido}"/>
                     </f:facet>
                     <h:outputText value="#{item.idpartido.idpartido}"/>
                 </p:column>
@@ -79,11 +79,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{canchasController.prepareCreate}" update=":CanchasCreateForm" oncomplete="PF('CanchasCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":CanchasViewForm" oncomplete="PF('CanchasViewDialog').show()" disabled="#{empty canchasController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":CanchasEditForm" oncomplete="PF('CanchasEditDialog').show()" disabled="#{empty canchasController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{canchasController.delete}" update=":growl,datalist" disabled="#{empty canchasController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{canchasController.prepareCreate}" update=":CanchasCreateForm" oncomplete="PF('CanchasCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":CanchasViewForm" oncomplete="PF('CanchasViewDialog').show()" disabled="#{empty canchasController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":CanchasEditForm" oncomplete="PF('CanchasEditDialog').show()" disabled="#{empty canchasController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{canchasController.delete}" update=":growl,datalist" disabled="#{empty canchasController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

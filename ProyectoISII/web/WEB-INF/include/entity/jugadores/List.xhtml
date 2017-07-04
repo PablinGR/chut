@@ -8,14 +8,14 @@
 
     <h:form id="JugadoresListForm">
 
-        <p:panel header="#{myBundle.ListJugadoresTitle}">
+        <p:panel header="#{miPaquete.ListJugadoresTitle}">
             <p:contextMenu id="JugadoresDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('JugadoresListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('JugadoresListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('JugadoresListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('JugadoresListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('JugadoresListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('JugadoresListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('JugadoresListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('JugadoresListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.JugadoresMenuItem_equiposCollection}" icon="ui-icon-search"  action="#{jugadoresController.navigateEquiposCollection}" disabled="#{jugadoresController.isEquiposCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.JugadoresMenuItem_equiposCollection}" icon="ui-icon-search"  action="#{jugadoresController.navigateEquiposCollection}" disabled="#{jugadoresController.isEquiposCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{jugadoresController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.cedulajugador}" filterBy="#{item.cedulajugador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListJugadoresTitle_cedulajugador}"/>
+                        <h:outputText value="#{miPaquete.ListJugadoresTitle_cedulajugador}"/>
                     </f:facet>
                     <h:outputText value="#{item.cedulajugador}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.nombrejugador}" filterBy="#{item.nombrejugador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListJugadoresTitle_nombrejugador}"/>
+                        <h:outputText value="#{miPaquete.ListJugadoresTitle_nombrejugador}"/>
                     </f:facet>
                     <h:outputText value="#{item.nombrejugador}"/>
                 </p:column>
@@ -61,7 +61,7 @@
 
                 <p:column sortBy="#{item.celularjugador}" filterBy="#{item.celularjugador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListJugadoresTitle_celularjugador}"/>
+                        <h:outputText value="#{miPaquete.ListJugadoresTitle_celularjugador}"/>
                     </f:facet>
                     <h:outputText value="#{item.celularjugador}"/>
                 </p:column>
@@ -69,7 +69,7 @@
 
                 <p:column sortBy="#{item.mailjugador}" filterBy="#{item.mailjugador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListJugadoresTitle_mailjugador}"/>
+                        <h:outputText value="#{miPaquete.ListJugadoresTitle_mailjugador}"/>
                     </f:facet>
                     <h:outputText value="#{item.mailjugador}"/>
                 </p:column>
@@ -77,11 +77,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{jugadoresController.prepareCreate}" update=":JugadoresCreateForm" oncomplete="PF('JugadoresCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":JugadoresViewForm" oncomplete="PF('JugadoresViewDialog').show()" disabled="#{empty jugadoresController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":JugadoresEditForm" oncomplete="PF('JugadoresEditDialog').show()" disabled="#{empty jugadoresController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{jugadoresController.delete}" update=":growl,datalist" disabled="#{empty jugadoresController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{jugadoresController.prepareCreate}" update=":JugadoresCreateForm" oncomplete="PF('JugadoresCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":JugadoresViewForm" oncomplete="PF('JugadoresViewDialog').show()" disabled="#{empty jugadoresController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":JugadoresEditForm" oncomplete="PF('JugadoresEditDialog').show()" disabled="#{empty jugadoresController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{jugadoresController.delete}" update=":growl,datalist" disabled="#{empty jugadoresController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

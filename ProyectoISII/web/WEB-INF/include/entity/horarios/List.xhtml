@@ -8,14 +8,14 @@
 
     <h:form id="HorariosListForm">
 
-        <p:panel header="#{myBundle.ListHorariosTitle}">
+        <p:panel header="#{miPaquete.ListHorariosTitle}">
             <p:contextMenu id="HorariosDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('HorariosListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('HorariosListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('HorariosListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('HorariosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('HorariosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('HorariosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('HorariosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('HorariosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.HorariosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{horariosController.navigateReservasCollection}" disabled="#{horariosController.isReservasCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.HorariosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{horariosController.navigateReservasCollection}" disabled="#{horariosController.isReservasCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{horariosController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.idhorario}" filterBy="#{item.idhorario}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListHorariosTitle_idhorario}"/>
+                        <h:outputText value="#{miPaquete.ListHorariosTitle_idhorario}"/>
                     </f:facet>
                     <h:outputText value="#{item.idhorario}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.descripcionhorario}" filterBy="#{item.descripcionhorario}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListHorariosTitle_descripcionhorario}"/>
+                        <h:outputText value="#{miPaquete.ListHorariosTitle_descripcionhorario}"/>
                     </f:facet>
                     <h:outputText value="#{item.descripcionhorario}"/>
                 </p:column>
@@ -61,7 +61,7 @@
 
                 <p:column sortBy="#{item.iniciohorario}" filterBy="#{item.iniciohorario}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListHorariosTitle_iniciohorario}"/>
+                        <h:outputText value="#{miPaquete.ListHorariosTitle_iniciohorario}"/>
                     </f:facet>
                     <h:outputText value="#{item.iniciohorario}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -71,7 +71,7 @@
 
                 <p:column sortBy="#{item.finhorario}" filterBy="#{item.finhorario}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListHorariosTitle_finhorario}"/>
+                        <h:outputText value="#{miPaquete.ListHorariosTitle_finhorario}"/>
                     </f:facet>
                     <h:outputText value="#{item.finhorario}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -81,11 +81,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{horariosController.prepareCreate}" update=":HorariosCreateForm" oncomplete="PF('HorariosCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":HorariosViewForm" oncomplete="PF('HorariosViewDialog').show()" disabled="#{empty horariosController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":HorariosEditForm" oncomplete="PF('HorariosEditDialog').show()" disabled="#{empty horariosController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{horariosController.delete}" update=":growl,datalist" disabled="#{empty horariosController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{horariosController.prepareCreate}" update=":HorariosCreateForm" oncomplete="PF('HorariosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":HorariosViewForm" oncomplete="PF('HorariosViewDialog').show()" disabled="#{empty horariosController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":HorariosEditForm" oncomplete="PF('HorariosEditDialog').show()" disabled="#{empty horariosController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{horariosController.delete}" update=":growl,datalist" disabled="#{empty horariosController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="PropietariosViewDlg" widgetVar="PropietariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPropietariosTitle}" closeOnEscape="true">
+        <p:dialog id="PropietariosViewDlg" widgetVar="PropietariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewPropietariosTitle}" closeOnEscape="true">
 
             <h:form id="PropietariosViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{propietariosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewPropietariosLabel_cedulapropietarios}"/>
-                        <h:outputText value="#{propietariosController.selected.cedulapropietarios}" title="#{myBundle.ViewPropietariosTitle_cedulapropietarios}"/>
+                        <h:outputText value="#{miPaquete.ViewPropietariosLabel_cedulapropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.cedulapropietarios}" title="#{miPaquete.ViewPropietariosTitle_cedulapropietarios}"/>
 
-                        <h:outputText value="#{myBundle.ViewPropietariosLabel_nombrepropietarios}"/>
-                        <h:outputText value="#{propietariosController.selected.nombrepropietarios}" title="#{myBundle.ViewPropietariosTitle_nombrepropietarios}"/>
+                        <h:outputText value="#{miPaquete.ViewPropietariosLabel_nombrepropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.nombrepropietarios}" title="#{miPaquete.ViewPropietariosTitle_nombrepropietarios}"/>
 
-                        <h:outputText value="#{myBundle.ViewPropietariosLabel_celularpropietarios}"/>
-                        <h:outputText value="#{propietariosController.selected.celularpropietarios}" title="#{myBundle.ViewPropietariosTitle_celularpropietarios}"/>
+                        <h:outputText value="#{miPaquete.ViewPropietariosLabel_celularpropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.celularpropietarios}" title="#{miPaquete.ViewPropietariosTitle_celularpropietarios}"/>
 
-                        <h:outputText value="#{myBundle.ViewPropietariosLabel_mailpropietarios}"/>
-                        <h:outputText value="#{propietariosController.selected.mailpropietarios}" title="#{myBundle.ViewPropietariosTitle_mailpropietarios}"/>
+                        <h:outputText value="#{miPaquete.ViewPropietariosLabel_mailpropietarios}"/>
+                        <h:outputText value="#{propietariosController.selected.mailpropietarios}" title="#{miPaquete.ViewPropietariosTitle_mailpropietarios}"/>
 
-                        <h:outputText value="#{myBundle.ViewPropietariosLabel_canchasCollection}"/>
+                        <h:outputText value="#{miPaquete.ViewPropietariosLabel_canchasCollection}"/>
                         <h:selectManyMenu converter="canchasConverter">
                             <f:selectItems value="#{propietariosController.selected.canchasCollection}"
                                            var="canchasCollectionItem"
@@ -37,7 +37,7 @@
 
                         </h:selectManyMenu>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PropietariosViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('PropietariosViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

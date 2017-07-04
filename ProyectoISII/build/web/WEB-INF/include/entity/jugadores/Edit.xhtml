@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="JugadoresEditDlg" widgetVar="JugadoresEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditJugadoresTitle}" closeOnEscape="true">
+        <p:dialog id="JugadoresEditDlg" widgetVar="JugadoresEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditJugadoresTitle}" closeOnEscape="true">
 
             <h:form id="JugadoresEditForm">
 
@@ -15,22 +15,22 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{jugadoresController.selected != null}">
 
 
-                        <h:outputLabel value="#{myBundle.EditJugadoresLabel_cedulajugador}" for="cedulajugador" />
+                        <h:outputLabel value="#{miPaquete.EditJugadoresLabel_cedulajugador}" for="cedulajugador" />
                         <h:outputText id="cedulajugador" value="#{jugadoresController.selected.cedulajugador}" />
 
-                        <p:outputLabel value="#{myBundle.EditJugadoresLabel_nombrejugador}" for="nombrejugador" />
-                        <p:inputText id="nombrejugador" value="#{jugadoresController.selected.nombrejugador}" title="#{myBundle.EditJugadoresTitle_nombrejugador}" required="true" requiredMessage="#{myBundle.EditJugadoresRequiredMessage_nombrejugador}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_nombrejugador}" for="nombrejugador" />
+                        <p:inputText id="nombrejugador" value="#{jugadoresController.selected.nombrejugador}" title="#{miPaquete.EditJugadoresTitle_nombrejugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_nombrejugador}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.EditJugadoresLabel_celularjugador}" for="celularjugador" />
-                        <p:inputText id="celularjugador" value="#{jugadoresController.selected.celularjugador}" title="#{myBundle.EditJugadoresTitle_celularjugador}" required="true" requiredMessage="#{myBundle.EditJugadoresRequiredMessage_celularjugador}"/>
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_celularjugador}" for="celularjugador" />
+                        <p:inputText id="celularjugador" value="#{jugadoresController.selected.celularjugador}" title="#{miPaquete.EditJugadoresTitle_celularjugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_celularjugador}"/>
 
-                        <p:outputLabel value="#{myBundle.EditJugadoresLabel_mailjugador}" for="mailjugador" />
-                        <p:inputText id="mailjugador" value="#{jugadoresController.selected.mailjugador}" title="#{myBundle.EditJugadoresTitle_mailjugador}" required="true" requiredMessage="#{myBundle.EditJugadoresRequiredMessage_mailjugador}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_mailjugador}" for="mailjugador" />
+                        <p:inputText id="mailjugador" value="#{jugadoresController.selected.mailjugador}" title="#{miPaquete.EditJugadoresTitle_mailjugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_mailjugador}" size="50" maxlength="50"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{jugadoresController.save}" value="#{myBundle.Save}" update="display,:JugadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('JugadoresEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{jugadoresController.save}" value="#{miPaquete.Save}" update="display,:JugadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('JugadoresEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('JugadoresEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('JugadoresEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

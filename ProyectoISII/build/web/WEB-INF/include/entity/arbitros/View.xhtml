@@ -8,23 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="ArbitrosViewDlg" widgetVar="ArbitrosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewArbitrosTitle}" closeOnEscape="true">
+        <p:dialog id="ArbitrosViewDlg" widgetVar="ArbitrosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewArbitrosTitle}" closeOnEscape="true">
 
             <h:form id="ArbitrosViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{arbitrosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewArbitrosLabel_cedulaarbitro}"/>
-                        <h:outputText value="#{arbitrosController.selected.cedulaarbitro}" title="#{myBundle.ViewArbitrosTitle_cedulaarbitro}"/>
+                        <h:outputText value="#{miPaquete.ViewArbitrosLabel_cedulaarbitro}"/>
+                        <h:outputText value="#{arbitrosController.selected.cedulaarbitro}" title="#{miPaquete.ViewArbitrosTitle_cedulaarbitro}"/>
 
-                        <h:outputText value="#{myBundle.ViewArbitrosLabel_nombrearbitro}"/>
-                        <h:outputText value="#{arbitrosController.selected.nombrearbitro}" title="#{myBundle.ViewArbitrosTitle_nombrearbitro}"/>
+                        <h:outputText value="#{miPaquete.ViewArbitrosLabel_nombrearbitro}"/>
+                        <h:outputText value="#{arbitrosController.selected.nombrearbitro}" title="#{miPaquete.ViewArbitrosTitle_nombrearbitro}"/>
 
-                        <h:outputText value="#{myBundle.ViewArbitrosLabel_idcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewArbitrosLabel_idcampeonato}"/>
                         <h:outputText value="#{arbitrosController.selected.idcampeonato.descripcioncampeonato}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ArbitrosViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('ArbitrosViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

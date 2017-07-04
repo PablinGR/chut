@@ -8,29 +8,29 @@
 
     <ui:composition>
 
-        <p:dialog id="ReservasViewDlg" widgetVar="ReservasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewReservasTitle}" closeOnEscape="true">
+        <p:dialog id="ReservasViewDlg" widgetVar="ReservasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewReservasTitle}" closeOnEscape="true">
 
             <h:form id="ReservasViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{reservasController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewReservasLabel_idreserva}"/>
-                        <h:outputText value="#{reservasController.selected.idreserva}" title="#{myBundle.ViewReservasTitle_idreserva}"/>
+                        <h:outputText value="#{miPaquete.ViewReservasLabel_idreserva}"/>
+                        <h:outputText value="#{reservasController.selected.idreserva}" title="#{miPaquete.ViewReservasTitle_idreserva}"/>
 
-                        <h:outputText value="#{myBundle.ViewReservasLabel_capitanreserva}"/>
-                        <h:outputText value="#{reservasController.selected.capitanreserva}" title="#{myBundle.ViewReservasTitle_capitanreserva}"/>
+                        <h:outputText value="#{miPaquete.ViewReservasLabel_capitanreserva}"/>
+                        <h:outputText value="#{reservasController.selected.capitanreserva}" title="#{miPaquete.ViewReservasTitle_capitanreserva}"/>
 
-                        <h:outputText value="#{myBundle.ViewReservasLabel_idcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewReservasLabel_idcampeonato}"/>
                         <h:outputText value="#{reservasController.selected.idcampeonato.descripcioncampeonato}"/>
 
-                        <h:outputText value="#{myBundle.ViewReservasLabel_idhorario}"/>
+                        <h:outputText value="#{miPaquete.ViewReservasLabel_idhorario}"/>
                         <h:outputText value="#{reservasController.selected.idhorario.descripcionhorario}"/>
 
-                        <h:outputText value="#{myBundle.ViewReservasLabel_idpartido}"/>
+                        <h:outputText value="#{miPaquete.ViewReservasLabel_idpartido}"/>
                         <h:outputText value="#{reservasController.selected.idpartido.idpartido}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ReservasViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('ReservasViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

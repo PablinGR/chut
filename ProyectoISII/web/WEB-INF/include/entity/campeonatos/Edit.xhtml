@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="CampeonatosEditDlg" widgetVar="CampeonatosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditCampeonatosTitle}" closeOnEscape="true">
+        <p:dialog id="CampeonatosEditDlg" widgetVar="CampeonatosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditCampeonatosTitle}" closeOnEscape="true">
 
             <h:form id="CampeonatosEditForm">
 
@@ -15,25 +15,25 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{campeonatosController.selected != null}">
 
 
-                        <h:outputLabel value="#{myBundle.EditCampeonatosLabel_idcampeonato}" for="idcampeonato" />
+                        <h:outputLabel value="#{miPaquete.EditCampeonatosLabel_idcampeonato}" for="idcampeonato" />
                         <h:outputText id="idcampeonato" value="#{campeonatosController.selected.idcampeonato}" />
 
-                        <p:outputLabel value="#{myBundle.EditCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
-                        <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.EditCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
+                        <p:outputLabel value="#{miPaquete.EditCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
+                        <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{miPaquete.EditCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{miPaquete.EditCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
 
-                        <p:outputLabel value="#{myBundle.EditCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
-                        <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.EditCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
+                        <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{miPaquete.EditCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{miPaquete.EditCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.EditCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
-                        <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.EditCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_celularcampeonato}"/>
+                        <p:outputLabel value="#{miPaquete.EditCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
+                        <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{miPaquete.EditCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{miPaquete.EditCampeonatosRequiredMessage_celularcampeonato}"/>
 
-                        <p:outputLabel value="#{myBundle.EditCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
-                        <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.EditCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{myBundle.EditCampeonatosRequiredMessage_premiocampeonato}"/>
+                        <p:outputLabel value="#{miPaquete.EditCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
+                        <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{miPaquete.EditCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{miPaquete.EditCampeonatosRequiredMessage_premiocampeonato}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{campeonatosController.save}" value="#{myBundle.Save}" update="display,:CampeonatosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CampeonatosEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{campeonatosController.save}" value="#{miPaquete.Save}" update="display,:CampeonatosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CampeonatosEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CampeonatosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('CampeonatosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

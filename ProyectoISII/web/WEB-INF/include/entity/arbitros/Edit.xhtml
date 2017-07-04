@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="ArbitrosEditDlg" widgetVar="ArbitrosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditArbitrosTitle}" closeOnEscape="true">
+        <p:dialog id="ArbitrosEditDlg" widgetVar="ArbitrosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditArbitrosTitle}" closeOnEscape="true">
 
             <h:form id="ArbitrosEditForm">
 
@@ -15,15 +15,15 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{arbitrosController.selected != null}">
 
 
-                        <h:outputLabel value="#{myBundle.EditArbitrosLabel_cedulaarbitro}" for="cedulaarbitro" />
+                        <h:outputLabel value="#{miPaquete.EditArbitrosLabel_cedulaarbitro}" for="cedulaarbitro" />
                         <h:outputText id="cedulaarbitro" value="#{arbitrosController.selected.cedulaarbitro}" />
 
-                        <p:outputLabel value="#{myBundle.EditArbitrosLabel_nombrearbitro}" for="nombrearbitro" />
-                        <p:inputText id="nombrearbitro" value="#{arbitrosController.selected.nombrearbitro}" title="#{myBundle.EditArbitrosTitle_nombrearbitro}" required="true" requiredMessage="#{myBundle.EditArbitrosRequiredMessage_nombrearbitro}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditArbitrosLabel_nombrearbitro}" for="nombrearbitro" />
+                        <p:inputText id="nombrearbitro" value="#{arbitrosController.selected.nombrearbitro}" title="#{miPaquete.EditArbitrosTitle_nombrearbitro}" required="true" requiredMessage="#{miPaquete.EditArbitrosRequiredMessage_nombrearbitro}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.EditArbitrosLabel_idcampeonato}" for="idcampeonato" />
-                        <p:selectOneMenu id="idcampeonato" value="#{arbitrosController.selected.idcampeonato}" required="true" requiredMessage="#{myBundle.EditArbitrosRequiredMessage_idcampeonato}" converter="campeonatosConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                        <p:outputLabel value="#{miPaquete.EditArbitrosLabel_idcampeonato}" for="idcampeonato" />
+                        <p:selectOneMenu id="idcampeonato" value="#{arbitrosController.selected.idcampeonato}" required="true" requiredMessage="#{miPaquete.EditArbitrosRequiredMessage_idcampeonato}" converter="campeonatosConverter">
+                            <f:selectItem itemLabel="#{miPaquete.SelectOneMessage}"/>
                             <f:selectItems value="#{campeonatosController.items}"
                                            var="idcampeonatoItem"
                                            itemValue="#{idcampeonatoItem}"
@@ -32,10 +32,10 @@
 
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{arbitrosController.save}" value="#{myBundle.Save}" update="display,:ArbitrosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ArbitrosEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{arbitrosController.save}" value="#{miPaquete.Save}" update="display,:ArbitrosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ArbitrosEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ArbitrosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('ArbitrosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

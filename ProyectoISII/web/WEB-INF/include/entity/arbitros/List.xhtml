@@ -8,14 +8,14 @@
 
     <h:form id="ArbitrosListForm">
 
-        <p:panel header="#{myBundle.ListArbitrosTitle}">
+        <p:panel header="#{miPaquete.ListArbitrosTitle}">
             <p:contextMenu id="ArbitrosDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ArbitrosListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ArbitrosListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ArbitrosListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ArbitrosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('ArbitrosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('ArbitrosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('ArbitrosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('ArbitrosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.ArbitrosMenuItem_idcampeonato}" icon="ui-icon-search"  actionListener="#{arbitrosController.prepareIdcampeonato}" update=":CampeonatosViewForm" oncomplete="PF('CampeonatosViewDialog').show()" disabled="#{empty arbitrosController.selected.idcampeonato}"/>  
+                <p:menuitem value="#{miPaquete.ArbitrosMenuItem_idcampeonato}" icon="ui-icon-search"  actionListener="#{arbitrosController.prepareIdcampeonato}" update=":CampeonatosViewForm" oncomplete="PF('CampeonatosViewDialog').show()" disabled="#{empty arbitrosController.selected.idcampeonato}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{arbitrosController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.cedulaarbitro}" filterBy="#{item.cedulaarbitro}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListArbitrosTitle_cedulaarbitro}"/>
+                        <h:outputText value="#{miPaquete.ListArbitrosTitle_cedulaarbitro}"/>
                     </f:facet>
                     <h:outputText value="#{item.cedulaarbitro}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.nombrearbitro}" filterBy="#{item.nombrearbitro}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListArbitrosTitle_nombrearbitro}"/>
+                        <h:outputText value="#{miPaquete.ListArbitrosTitle_nombrearbitro}"/>
                     </f:facet>
                     <h:outputText value="#{item.nombrearbitro}"/>
                 </p:column>
@@ -61,7 +61,7 @@
 
                 <p:column sortBy="#{item.idcampeonato.descripcioncampeonato}" filterBy="#{item.idcampeonato.descripcioncampeonato}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListArbitrosTitle_idcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ListArbitrosTitle_idcampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.idcampeonato.descripcioncampeonato}"/>
                 </p:column>
@@ -69,11 +69,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{arbitrosController.prepareCreate}" update=":ArbitrosCreateForm" oncomplete="PF('ArbitrosCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ArbitrosViewForm" oncomplete="PF('ArbitrosViewDialog').show()" disabled="#{empty arbitrosController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ArbitrosEditForm" oncomplete="PF('ArbitrosEditDialog').show()" disabled="#{empty arbitrosController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{arbitrosController.delete}" update=":growl,datalist" disabled="#{empty arbitrosController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{arbitrosController.prepareCreate}" update=":ArbitrosCreateForm" oncomplete="PF('ArbitrosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":ArbitrosViewForm" oncomplete="PF('ArbitrosViewDialog').show()" disabled="#{empty arbitrosController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":ArbitrosEditForm" oncomplete="PF('ArbitrosEditDialog').show()" disabled="#{empty arbitrosController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{arbitrosController.delete}" update=":growl,datalist" disabled="#{empty arbitrosController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

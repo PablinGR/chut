@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="HorariosEditDlg" widgetVar="HorariosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditHorariosTitle}" closeOnEscape="true">
+        <p:dialog id="HorariosEditDlg" widgetVar="HorariosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditHorariosTitle}" closeOnEscape="true">
 
             <h:form id="HorariosEditForm">
 
@@ -15,22 +15,22 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{horariosController.selected != null}">
 
 
-                        <h:outputLabel value="#{myBundle.EditHorariosLabel_idhorario}" for="idhorario" />
+                        <h:outputLabel value="#{miPaquete.EditHorariosLabel_idhorario}" for="idhorario" />
                         <h:outputText id="idhorario" value="#{horariosController.selected.idhorario}" />
 
-                        <p:outputLabel value="#{myBundle.EditHorariosLabel_descripcionhorario}" for="descripcionhorario" />
-                        <p:inputText id="descripcionhorario" value="#{horariosController.selected.descripcionhorario}" title="#{myBundle.EditHorariosTitle_descripcionhorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_descripcionhorario}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.EditHorariosLabel_descripcionhorario}" for="descripcionhorario" />
+                        <p:inputText id="descripcionhorario" value="#{horariosController.selected.descripcionhorario}" title="#{miPaquete.EditHorariosTitle_descripcionhorario}" required="true" requiredMessage="#{miPaquete.EditHorariosRequiredMessage_descripcionhorario}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.EditHorariosLabel_iniciohorario}" for="iniciohorario" />
-                        <p:calendar id="iniciohorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.iniciohorario}" title="#{myBundle.EditHorariosTitle_iniciohorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_iniciohorario}" showOn="button"/>
+                        <p:outputLabel value="#{miPaquete.EditHorariosLabel_iniciohorario}" for="iniciohorario" />
+                        <p:calendar id="iniciohorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.iniciohorario}" title="#{miPaquete.EditHorariosTitle_iniciohorario}" required="true" requiredMessage="#{miPaquete.EditHorariosRequiredMessage_iniciohorario}" showOn="button"/>
 
-                        <p:outputLabel value="#{myBundle.EditHorariosLabel_finhorario}" for="finhorario" />
-                        <p:calendar id="finhorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.finhorario}" title="#{myBundle.EditHorariosTitle_finhorario}" required="true" requiredMessage="#{myBundle.EditHorariosRequiredMessage_finhorario}" showOn="button"/>
+                        <p:outputLabel value="#{miPaquete.EditHorariosLabel_finhorario}" for="finhorario" />
+                        <p:calendar id="finhorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.finhorario}" title="#{miPaquete.EditHorariosTitle_finhorario}" required="true" requiredMessage="#{miPaquete.EditHorariosRequiredMessage_finhorario}" showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{horariosController.save}" value="#{myBundle.Save}" update="display,:HorariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('HorariosEditDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{horariosController.save}" value="#{miPaquete.Save}" update="display,:HorariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('HorariosEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('HorariosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('HorariosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

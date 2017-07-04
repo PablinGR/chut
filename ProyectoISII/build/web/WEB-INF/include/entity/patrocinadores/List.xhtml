@@ -8,14 +8,14 @@
 
     <h:form id="PatrocinadoresListForm">
 
-        <p:panel header="#{myBundle.ListPatrocinadoresTitle}">
+        <p:panel header="#{miPaquete.ListPatrocinadoresTitle}">
             <p:contextMenu id="PatrocinadoresDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('PatrocinadoresListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('PatrocinadoresListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('PatrocinadoresListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('PatrocinadoresListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('PatrocinadoresListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('PatrocinadoresListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('PatrocinadoresListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('PatrocinadoresListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.PatrocinadoresMenuItem_campeonatosCollection}" icon="ui-icon-search"  action="#{patrocinadoresController.navigateCampeonatosCollection}" disabled="#{patrocinadoresController.isCampeonatosCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.PatrocinadoresMenuItem_campeonatosCollection}" icon="ui-icon-search"  action="#{patrocinadoresController.navigateCampeonatosCollection}" disabled="#{patrocinadoresController.isCampeonatosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{patrocinadoresController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.rucpatrocinador}" filterBy="#{item.rucpatrocinador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListPatrocinadoresTitle_rucpatrocinador}"/>
+                        <h:outputText value="#{miPaquete.ListPatrocinadoresTitle_rucpatrocinador}"/>
                     </f:facet>
                     <h:outputText value="#{item.rucpatrocinador}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.descripcionpatrocinador}" filterBy="#{item.descripcionpatrocinador}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListPatrocinadoresTitle_descripcionpatrocinador}"/>
+                        <h:outputText value="#{miPaquete.ListPatrocinadoresTitle_descripcionpatrocinador}"/>
                     </f:facet>
                     <h:outputText value="#{item.descripcionpatrocinador}"/>
                 </p:column>
@@ -61,11 +61,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{patrocinadoresController.prepareCreate}" update=":PatrocinadoresCreateForm" oncomplete="PF('PatrocinadoresCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":PatrocinadoresViewForm" oncomplete="PF('PatrocinadoresViewDialog').show()" disabled="#{empty patrocinadoresController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PatrocinadoresEditForm" oncomplete="PF('PatrocinadoresEditDialog').show()" disabled="#{empty patrocinadoresController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{patrocinadoresController.delete}" update=":growl,datalist" disabled="#{empty patrocinadoresController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{patrocinadoresController.prepareCreate}" update=":PatrocinadoresCreateForm" oncomplete="PF('PatrocinadoresCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":PatrocinadoresViewForm" oncomplete="PF('PatrocinadoresViewDialog').show()" disabled="#{empty patrocinadoresController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":PatrocinadoresEditForm" oncomplete="PF('PatrocinadoresEditDialog').show()" disabled="#{empty patrocinadoresController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{patrocinadoresController.delete}" update=":growl,datalist" disabled="#{empty patrocinadoresController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

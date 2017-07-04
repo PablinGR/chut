@@ -8,31 +8,31 @@
 
     <ui:composition>
 
-        <p:dialog id="PartidosViewDlg" widgetVar="PartidosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPartidosTitle}" closeOnEscape="true">
+        <p:dialog id="PartidosViewDlg" widgetVar="PartidosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewPartidosTitle}" closeOnEscape="true">
 
             <h:form id="PartidosViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{partidosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewPartidosLabel_idpartido}"/>
-                        <h:outputText value="#{partidosController.selected.idpartido}" title="#{myBundle.ViewPartidosTitle_idpartido}"/>
+                        <h:outputText value="#{miPaquete.ViewPartidosLabel_idpartido}"/>
+                        <h:outputText value="#{partidosController.selected.idpartido}" title="#{miPaquete.ViewPartidosTitle_idpartido}"/>
 
-                        <h:outputText value="#{myBundle.ViewPartidosLabel_fechapartido}"/>
-                        <h:outputText value="#{partidosController.selected.fechapartido}" title="#{myBundle.ViewPartidosTitle_fechapartido}">
+                        <h:outputText value="#{miPaquete.ViewPartidosLabel_fechapartido}"/>
+                        <h:outputText value="#{partidosController.selected.fechapartido}" title="#{miPaquete.ViewPartidosTitle_fechapartido}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{myBundle.ViewPartidosLabel_idequipo}"/>
+                        <h:outputText value="#{miPaquete.ViewPartidosLabel_idequipo}"/>
                         <h:outputText value="#{partidosController.selected.idequipo.descripcionequipo}"/>
 
-                        <h:outputText value="#{myBundle.ViewPartidosLabel_idreserva}"/>
+                        <h:outputText value="#{miPaquete.ViewPartidosLabel_idreserva}"/>
                         <h:outputText value="#{partidosController.selected.idreserva.idreserva}"/>
 
-                        <h:outputText value="#{myBundle.ViewPartidosLabel_idcancha}"/>
+                        <h:outputText value="#{miPaquete.ViewPartidosLabel_idcancha}"/>
                         <h:outputText value="#{partidosController.selected.idcancha.descripcioncancha}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PartidosViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('PartidosViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

@@ -8,33 +8,33 @@
 
     <ui:composition>
 
-        <p:dialog id="CampeonatosCreateDlg" widgetVar="CampeonatosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateCampeonatosTitle}" closeOnEscape="true">
+        <p:dialog id="CampeonatosCreateDlg" widgetVar="CampeonatosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{miPaquete.CreateCampeonatosTitle}" closeOnEscape="true">
 
             <h:form id="CampeonatosCreateForm">
 
                 <h:panelGroup id="display" rendered="#{campeonatosController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_idcampeonato}" for="idcampeonato" />
-                        <p:inputText id="idcampeonato" value="#{campeonatosController.selected.idcampeonato}" title="#{myBundle.CreateCampeonatosTitle_idcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_idcampeonato}"/>
+                        <p:outputLabel value="#{miPaquete.CreateCampeonatosLabel_idcampeonato}" for="idcampeonato" />
+                        <p:inputText id="idcampeonato" value="#{campeonatosController.selected.idcampeonato}" title="#{miPaquete.CreateCampeonatosTitle_idcampeonato}" required="true" requiredMessage="#{miPaquete.CreateCampeonatosRequiredMessage_idcampeonato}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
-                        <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.CreateCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
+                        <p:outputLabel value="#{miPaquete.CreateCampeonatosLabel_descripcioncampeonato}" for="descripcioncampeonato" />
+                        <p:inputText id="descripcioncampeonato" value="#{campeonatosController.selected.descripcioncampeonato}" title="#{miPaquete.CreateCampeonatosTitle_descripcioncampeonato}" required="true" requiredMessage="#{miPaquete.CreateCampeonatosRequiredMessage_descripcioncampeonato}" size="30" maxlength="30"/>
 
-                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
-                        <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.CreateCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.CreateCampeonatosLabel_mailcampeonato}" for="mailcampeonato" />
+                        <p:inputText id="mailcampeonato" value="#{campeonatosController.selected.mailcampeonato}" title="#{miPaquete.CreateCampeonatosTitle_mailcampeonato}" required="true" requiredMessage="#{miPaquete.CreateCampeonatosRequiredMessage_mailcampeonato}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
-                        <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.CreateCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_celularcampeonato}"/>
+                        <p:outputLabel value="#{miPaquete.CreateCampeonatosLabel_celularcampeonato}" for="celularcampeonato" />
+                        <p:inputText id="celularcampeonato" value="#{campeonatosController.selected.celularcampeonato}" title="#{miPaquete.CreateCampeonatosTitle_celularcampeonato}" required="true" requiredMessage="#{miPaquete.CreateCampeonatosRequiredMessage_celularcampeonato}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
-                        <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.CreateCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{myBundle.CreateCampeonatosRequiredMessage_premiocampeonato}"/>
+                        <p:outputLabel value="#{miPaquete.CreateCampeonatosLabel_premiocampeonato}" for="premiocampeonato" />
+                        <p:inputText id="premiocampeonato" value="#{campeonatosController.selected.premiocampeonato}" title="#{miPaquete.CreateCampeonatosTitle_premiocampeonato}" required="true" requiredMessage="#{miPaquete.CreateCampeonatosRequiredMessage_premiocampeonato}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{campeonatosController.saveNew}" value="#{myBundle.Save}" update="display,:CampeonatosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CampeonatosCreateDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{campeonatosController.saveNew}" value="#{miPaquete.Save}" update="display,:CampeonatosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CampeonatosCreateDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CampeonatosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('CampeonatosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

@@ -8,29 +8,29 @@
 
     <ui:composition>
 
-        <p:dialog id="CampeonatosViewDlg" widgetVar="CampeonatosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewCampeonatosTitle}" closeOnEscape="true">
+        <p:dialog id="CampeonatosViewDlg" widgetVar="CampeonatosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewCampeonatosTitle}" closeOnEscape="true">
 
             <h:form id="CampeonatosViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{campeonatosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_idcampeonato}"/>
-                        <h:outputText value="#{campeonatosController.selected.idcampeonato}" title="#{myBundle.ViewCampeonatosTitle_idcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_idcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.idcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_idcampeonato}"/>
 
-                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_descripcioncampeonato}"/>
-                        <h:outputText value="#{campeonatosController.selected.descripcioncampeonato}" title="#{myBundle.ViewCampeonatosTitle_descripcioncampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_descripcioncampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.descripcioncampeonato}" title="#{miPaquete.ViewCampeonatosTitle_descripcioncampeonato}"/>
 
-                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_mailcampeonato}"/>
-                        <h:outputText value="#{campeonatosController.selected.mailcampeonato}" title="#{myBundle.ViewCampeonatosTitle_mailcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_mailcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.mailcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_mailcampeonato}"/>
 
-                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_celularcampeonato}"/>
-                        <h:outputText value="#{campeonatosController.selected.celularcampeonato}" title="#{myBundle.ViewCampeonatosTitle_celularcampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_celularcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.celularcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_celularcampeonato}"/>
 
-                        <h:outputText value="#{myBundle.ViewCampeonatosLabel_premiocampeonato}"/>
-                        <h:outputText value="#{campeonatosController.selected.premiocampeonato}" title="#{myBundle.ViewCampeonatosTitle_premiocampeonato}"/>
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_premiocampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.premiocampeonato}" title="#{miPaquete.ViewCampeonatosTitle_premiocampeonato}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('CampeonatosViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('CampeonatosViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

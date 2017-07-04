@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="CanchasViewDlg" widgetVar="CanchasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewCanchasTitle}" closeOnEscape="true">
+        <p:dialog id="CanchasViewDlg" widgetVar="CanchasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewCanchasTitle}" closeOnEscape="true">
 
             <h:form id="CanchasViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{canchasController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewCanchasLabel_idcancha}"/>
-                        <h:outputText value="#{canchasController.selected.idcancha}" title="#{myBundle.ViewCanchasTitle_idcancha}"/>
+                        <h:outputText value="#{miPaquete.ViewCanchasLabel_idcancha}"/>
+                        <h:outputText value="#{canchasController.selected.idcancha}" title="#{miPaquete.ViewCanchasTitle_idcancha}"/>
 
-                        <h:outputText value="#{myBundle.ViewCanchasLabel_descripcioncancha}"/>
-                        <h:outputText value="#{canchasController.selected.descripcioncancha}" title="#{myBundle.ViewCanchasTitle_descripcioncancha}"/>
+                        <h:outputText value="#{miPaquete.ViewCanchasLabel_descripcioncancha}"/>
+                        <h:outputText value="#{canchasController.selected.descripcioncancha}" title="#{miPaquete.ViewCanchasTitle_descripcioncancha}"/>
 
-                        <h:outputText value="#{myBundle.ViewCanchasLabel_sectorcancha}"/>
-                        <h:outputText value="#{canchasController.selected.sectorcancha}" title="#{myBundle.ViewCanchasTitle_sectorcancha}"/>
+                        <h:outputText value="#{miPaquete.ViewCanchasLabel_sectorcancha}"/>
+                        <h:outputText value="#{canchasController.selected.sectorcancha}" title="#{miPaquete.ViewCanchasTitle_sectorcancha}"/>
 
-                        <h:outputText value="#{myBundle.ViewCanchasLabel_idpartido}"/>
+                        <h:outputText value="#{miPaquete.ViewCanchasLabel_idpartido}"/>
                         <h:outputText value="#{canchasController.selected.idpartido.idpartido}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{myBundle.Close}" onclick="PF('CanchasViewDialog').hide()"/>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('CanchasViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

@@ -8,20 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="PatrocinadoresCreateDlg" widgetVar="PatrocinadoresCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreatePatrocinadoresTitle}" closeOnEscape="true">
+        <p:dialog id="PatrocinadoresCreateDlg" widgetVar="PatrocinadoresCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{miPaquete.CreatePatrocinadoresTitle}" closeOnEscape="true">
 
             <h:form id="PatrocinadoresCreateForm">
 
                 <h:panelGroup id="display" rendered="#{patrocinadoresController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{myBundle.CreatePatrocinadoresLabel_rucpatrocinador}" for="rucpatrocinador" />
-                        <p:inputText id="rucpatrocinador" value="#{patrocinadoresController.selected.rucpatrocinador}" title="#{myBundle.CreatePatrocinadoresTitle_rucpatrocinador}" required="true" requiredMessage="#{myBundle.CreatePatrocinadoresRequiredMessage_rucpatrocinador}" size="13" maxlength="13"/>
+                        <p:outputLabel value="#{miPaquete.CreatePatrocinadoresLabel_rucpatrocinador}" for="rucpatrocinador" />
+                        <p:inputText id="rucpatrocinador" value="#{patrocinadoresController.selected.rucpatrocinador}" title="#{miPaquete.CreatePatrocinadoresTitle_rucpatrocinador}" required="true" requiredMessage="#{miPaquete.CreatePatrocinadoresRequiredMessage_rucpatrocinador}" size="13" maxlength="13"/>
 
-                        <p:outputLabel value="#{myBundle.CreatePatrocinadoresLabel_descripcionpatrocinador}" for="descripcionpatrocinador" />
-                        <p:inputText id="descripcionpatrocinador" value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{myBundle.CreatePatrocinadoresTitle_descripcionpatrocinador}" required="true" requiredMessage="#{myBundle.CreatePatrocinadoresRequiredMessage_descripcionpatrocinador}" size="50" maxlength="50"/>
+                        <p:outputLabel value="#{miPaquete.CreatePatrocinadoresLabel_descripcionpatrocinador}" for="descripcionpatrocinador" />
+                        <p:inputText id="descripcionpatrocinador" value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{miPaquete.CreatePatrocinadoresTitle_descripcionpatrocinador}" required="true" requiredMessage="#{miPaquete.CreatePatrocinadoresRequiredMessage_descripcionpatrocinador}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.CreatePatrocinadoresLabel_campeonatosCollection}" for="campeonatosCollection" />
+                        <p:outputLabel value="#{miPaquete.CreatePatrocinadoresLabel_campeonatosCollection}" for="campeonatosCollection" />
                         <p:selectManyMenu id="campeonatosCollection" value="#{patrocinadoresController.selected.campeonatosCollection}"  converter="campeonatosConverter">
                             <f:attribute name="collectionType" value="java.util.ArrayList"/>
                             <f:selectItems value="#{campeonatosController.items}"
@@ -32,11 +32,11 @@
 
                         </p:selectManyMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{patrocinadoresController.saveNew}" value="#{myBundle.Save}" update="display,:PatrocinadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PatrocinadoresCreateDialog'));">
-                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{patrocinadoresController.saveNew}" value="#{miPaquete.Save}" update="display,:PatrocinadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PatrocinadoresCreateDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PatrocinadoresCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('PatrocinadoresCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>
