@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import MD.Patrocinadores_;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import MD.Campeonatos;
 import java.util.Collection;
@@ -46,20 +45,6 @@ public class PatrocinadoresFacade extends AbstractFacade<Patrocinadores> {
 
     public Collection<Campeonatos> findCampeonatosCollection(Patrocinadores entity) {
         return this.getMergedEntity(entity).getCampeonatosCollection();
-    }
-
-    @Override
-    public Patrocinadores findWithParents(Patrocinadores entity) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Patrocinadores> cq = cb.createQuery(Patrocinadores.class);
-        Root<Patrocinadores> patrocinadores = cq.from(Patrocinadores.class);
-        patrocinadores.fetch(Patrocinadores_.campeonatosCollection, JoinType.LEFT);
-        cq.select(patrocinadores).where(cb.equal(patrocinadores, entity));
-        try {
-            return em.createQuery(cq).getSingleResult();
-        } catch (Exception e) {
-            return entity;
-        }
     }
     
 }

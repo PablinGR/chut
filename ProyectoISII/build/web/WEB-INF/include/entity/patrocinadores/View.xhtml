@@ -20,16 +20,6 @@
 
                         <h:outputText value="#{miPaquete.ViewPatrocinadoresLabel_descripcionpatrocinador}"/>
                         <h:outputText value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{miPaquete.ViewPatrocinadoresTitle_descripcionpatrocinador}"/>
-
-                        <h:outputText value="#{miPaquete.ViewPatrocinadoresLabel_campeonatosCollection}"/>
-                        <h:selectManyMenu converter="campeonatosConverter">
-                            <f:selectItems value="#{patrocinadoresController.selected.campeonatosCollection}"
-                                           var="campeonatosCollectionItem"
-                                           itemValue="#{campeonatosCollectionItem}"
-                                           itemLabel="#{campeonatosCollectionItem.descripcioncampeonato.toString()}"
-                                           />
-
-                        </h:selectManyMenu>
                     </p:panelGrid>
                     <p:commandButton value="#{miPaquete.Close}" onclick="PF('PatrocinadoresViewDialog').hide()"/>
                 </h:panelGroup>

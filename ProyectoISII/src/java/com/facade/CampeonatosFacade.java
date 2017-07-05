@@ -37,16 +37,16 @@ public class CampeonatosFacade extends AbstractFacade<Campeonatos> {
         super(Campeonatos.class);
     }
 
-    public boolean isPatrocinadoresCollectionEmpty(Campeonatos entity) {
+    public boolean isRucpatrocinadorEmpty(Campeonatos entity) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<Campeonatos> campeonatos = cq.from(Campeonatos.class);
-        cq.select(cb.literal(1L)).distinct(true).where(cb.equal(campeonatos, entity), cb.isNotEmpty(campeonatos.get(Campeonatos_.patrocinadoresCollection)));
+        cq.select(cb.literal(1L)).distinct(true).where(cb.equal(campeonatos, entity), cb.isNotNull(campeonatos.get(Campeonatos_.rucpatrocinador)));
         return em.createQuery(cq).getResultList().isEmpty();
     }
 
-    public Collection<Patrocinadores> findPatrocinadoresCollection(Campeonatos entity) {
-        return this.getMergedEntity(entity).getPatrocinadoresCollection();
+    public Patrocinadores findRucpatrocinador(Campeonatos entity) {
+        return this.getMergedEntity(entity).getRucpatrocinador();
     }
 
     public boolean isReservasCollectionEmpty(Campeonatos entity) {

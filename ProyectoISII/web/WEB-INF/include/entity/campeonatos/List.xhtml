@@ -15,7 +15,7 @@
                 <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('CampeonatosListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('CampeonatosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{miPaquete.CampeonatosMenuItem_patrocinadoresCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigatePatrocinadoresCollection}" disabled="#{campeonatosController.isPatrocinadoresCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.CampeonatosMenuItem_rucpatrocinador}" icon="ui-icon-search"  actionListener="#{campeonatosController.prepareRucpatrocinador}" update=":PatrocinadoresViewForm" oncomplete="PF('PatrocinadoresViewDialog').show()" disabled="#{empty campeonatosController.selected.rucpatrocinador}"/>  
                 <p:menuitem value="#{miPaquete.CampeonatosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateReservasCollection}" disabled="#{campeonatosController.isReservasCollectionEmpty}" ajax="false"/>  
                 <p:menuitem value="#{miPaquete.CampeonatosMenuItem_arbitrosCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateArbitrosCollection}" disabled="#{campeonatosController.isArbitrosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
@@ -40,9 +40,9 @@
                 -->
 
 
-                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CampeonatosDataTableContextMenu"/>
-                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CampeonatosDataTableContextMenu"/>
-                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CampeonatosDataTableContextMenu" listener="#{campeonatosController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CampeonatosDataTableContextMenu" listener="#{campeonatosController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{campeonatosController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('CampeonatosListForm:viewButton').click();"/>
 
                 <p:column sortBy="#{item.idcampeonato}" filterBy="#{item.idcampeonato}">
@@ -82,6 +82,14 @@
                         <h:outputText value="#{miPaquete.ListCampeonatosTitle_premiocampeonato}"/>
                     </f:facet>
                     <h:outputText value="#{item.premiocampeonato}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.rucpatrocinador.descripcionpatrocinador}" filterBy="#{item.rucpatrocinador.descripcionpatrocinador}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListCampeonatosTitle_rucpatrocinador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rucpatrocinador.descripcionpatrocinador}"/>
                 </p:column>
 
 

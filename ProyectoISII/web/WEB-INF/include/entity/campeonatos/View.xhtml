@@ -29,6 +29,9 @@
 
                         <h:outputText value="#{miPaquete.ViewCampeonatosLabel_premiocampeonato}"/>
                         <h:outputText value="#{campeonatosController.selected.premiocampeonato}" title="#{miPaquete.ViewCampeonatosTitle_premiocampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_rucpatrocinador}"/>
+                        <h:outputText value="#{campeonatosController.selected.rucpatrocinador.descripcionpatrocinador}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{miPaquete.Close}" onclick="PF('CampeonatosViewDialog').hide()"/>
                 </h:panelGroup>

@@ -12,7 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -62,8 +63,9 @@ public class Campeonatos implements Serializable {
     @NotNull
     @Column(name = "PREMIOCAMPEONATO")
     private float premiocampeonato;
-    @ManyToMany(mappedBy = "campeonatosCollection")
-    private Collection<Patrocinadores> patrocinadoresCollection;
+    @JoinColumn(name = "RUCPATROCINADOR", referencedColumnName = "RUCPATROCINADOR")
+    @ManyToOne(optional = false)
+    private Patrocinadores rucpatrocinador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcampeonato")
     private Collection<Reservas> reservasCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcampeonato")
@@ -124,13 +126,12 @@ public class Campeonatos implements Serializable {
         this.premiocampeonato = premiocampeonato;
     }
 
-    @XmlTransient
-    public Collection<Patrocinadores> getPatrocinadoresCollection() {
-        return patrocinadoresCollection;
+    public Patrocinadores getRucpatrocinador() {
+        return rucpatrocinador;
     }
 
-    public void setPatrocinadoresCollection(Collection<Patrocinadores> patrocinadoresCollection) {
-        this.patrocinadoresCollection = patrocinadoresCollection;
+    public void setRucpatrocinador(Patrocinadores rucpatrocinador) {
+        this.rucpatrocinador = rucpatrocinador;
     }
 
     @XmlTransient

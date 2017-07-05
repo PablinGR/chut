@@ -5,14 +5,17 @@ import com.facade.CampeonatosFacade;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 @Named(value = "campeonatosController")
 @ViewScoped
 public class CampeonatosController extends AbstractController<Campeonatos> {
 
+    @Inject
+    private PatrocinadoresController rucpatrocinadorController;
+
     // Flags to indicate if child collections are empty
-    private boolean isPatrocinadoresCollectionEmpty;
     private boolean isReservasCollectionEmpty;
     private boolean isArbitrosCollectionEmpty;
 
@@ -22,43 +25,32 @@ public class CampeonatosController extends AbstractController<Campeonatos> {
     }
 
     /**
+     * Resets the "selected" attribute of any parent Entity controllers.
+     */
+    public void resetParents() {
+        rucpatrocinadorController.setSelected(null);
+    }
+
+    /**
      * Set the "is[ChildCollection]Empty" property for OneToMany fields.
      */
     @Override
     protected void setChildrenEmptyFlags() {
-        this.setIsPatrocinadoresCollectionEmpty();
         this.setIsReservasCollectionEmpty();
         this.setIsArbitrosCollectionEmpty();
     }
 
-    public boolean getIsPatrocinadoresCollectionEmpty() {
-        return this.isPatrocinadoresCollectionEmpty;
-    }
-
-    private void setIsPatrocinadoresCollectionEmpty() {
-        Campeonatos selected = this.getSelected();
-        if (selected != null) {
-            CampeonatosFacade ejbFacade = (CampeonatosFacade) this.getFacade();
-            this.isPatrocinadoresCollectionEmpty = ejbFacade.isPatrocinadoresCollectionEmpty(selected);
-        } else {
-            this.isPatrocinadoresCollectionEmpty = true;
-        }
-    }
-
     /**
-     * Sets the "items" attribute with a collection of Patrocinadores entities
-     * that are retrieved from Campeonatos?cap_first and returns the navigation
-     * outcome.
+     * Sets the "selected" attribute of the Patrocinadores controller in order
+     * to display its data in its View dialog.
      *
-     * @return navigation outcome for Patrocinadores page
+     * @param event Event object for the widget that triggered an action
      */
-    public String navigatePatrocinadoresCollection() {
+    public void prepareRucpatrocinador(ActionEvent event) {
         Campeonatos selected = this.getSelected();
-        if (selected != null) {
-            CampeonatosFacade ejbFacade = (CampeonatosFacade) this.getFacade();
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Patrocinadores_items", ejbFacade.findPatrocinadoresCollection(selected));
+        if (selected != null && rucpatrocinadorController.getSelected() == null) {
+            rucpatrocinadorController.setSelected(selected.getRucpatrocinador());
         }
-        return "/app/patrocinadores/index";
     }
 
     public boolean getIsReservasCollectionEmpty() {

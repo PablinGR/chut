@@ -20,17 +20,6 @@
 
                         <p:outputLabel value="#{miPaquete.CreatePatrocinadoresLabel_descripcionpatrocinador}" for="descripcionpatrocinador" />
                         <p:inputText id="descripcionpatrocinador" value="#{patrocinadoresController.selected.descripcionpatrocinador}" title="#{miPaquete.CreatePatrocinadoresTitle_descripcionpatrocinador}" required="true" requiredMessage="#{miPaquete.CreatePatrocinadoresRequiredMessage_descripcionpatrocinador}" size="50" maxlength="50"/>
-
-                        <p:outputLabel value="#{miPaquete.CreatePatrocinadoresLabel_campeonatosCollection}" for="campeonatosCollection" />
-                        <p:selectManyMenu id="campeonatosCollection" value="#{patrocinadoresController.selected.campeonatosCollection}"  converter="campeonatosConverter">
-                            <f:attribute name="collectionType" value="java.util.ArrayList"/>
-                            <f:selectItems value="#{campeonatosController.items}"
-                                           var="campeonatosCollectionItem"
-                                           itemValue="#{campeonatosCollectionItem}"
-                                           itemLabel="#{campeonatosCollectionItem.descripcioncampeonato.toString()}"
-                                           />
-
-                        </p:selectManyMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{patrocinadoresController.saveNew}" value="#{miPaquete.Save}" update="display,:PatrocinadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PatrocinadoresCreateDialog'));">
                         <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
