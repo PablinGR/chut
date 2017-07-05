@@ -21,9 +21,8 @@
                 <p:menuitem value="#{miPaquete.ReservasMenuItem_idpartido}" icon="ui-icon-search"  actionListener="#{reservasController.prepareIdpartido}" update=":PartidosViewForm" oncomplete="PF('PartidosViewDialog').show()" disabled="#{empty reservasController.selected.idpartido}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{reservasController.items}"
-                         lazy="false"
-                         rowKey="#{item.idreserva}"
+                         value="#{reservasController.lazyItems}"
+                         lazy="true"
                          var="item"
                          paginator="true"
                          rows="10"
@@ -32,12 +31,12 @@
                          selection="#{reservasController.selected}"
                          filteredValue="#{reservasController.filteredItems}">
                 <!--
-                         To enable Lazy Loading, please copy/replace the following lines above,
+                         To disable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
                 
-                         value="HASH{reservasController.lazyItems}"
-                         lazy="true"
-                         rowKey="HASH{item.idreserva}"  <<< Remove this line
+                         value="HASH{reservasController.items}"
+                         lazy="false"
+                         rowKey="HASH{item.idreserva}"
                 -->
 
 

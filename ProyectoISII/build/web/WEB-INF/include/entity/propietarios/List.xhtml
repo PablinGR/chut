@@ -18,9 +18,8 @@
                 <p:menuitem value="#{miPaquete.PropietariosMenuItem_canchasCollection}" icon="ui-icon-search"  action="#{propietariosController.navigateCanchasCollection}" disabled="#{propietariosController.isCanchasCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{propietariosController.items}"
-                         lazy="false"
-                         rowKey="#{item.cedulapropietarios}"
+                         value="#{propietariosController.lazyItems}"
+                         lazy="true"
                          var="item"
                          paginator="true"
                          rows="10"
@@ -29,12 +28,12 @@
                          selection="#{propietariosController.selected}"
                          filteredValue="#{propietariosController.filteredItems}">
                 <!--
-                         To enable Lazy Loading, please copy/replace the following lines above,
+                         To disable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
                 
-                         value="HASH{propietariosController.lazyItems}"
-                         lazy="true"
-                         rowKey="HASH{item.cedulapropietarios}"  <<< Remove this line
+                         value="HASH{propietariosController.items}"
+                         lazy="false"
+                         rowKey="HASH{item.cedulapropietarios}"
                 -->
 
 

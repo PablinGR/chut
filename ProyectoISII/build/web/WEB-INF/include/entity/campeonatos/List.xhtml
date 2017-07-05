@@ -20,9 +20,8 @@
                 <p:menuitem value="#{miPaquete.CampeonatosMenuItem_arbitrosCollection}" icon="ui-icon-search"  action="#{campeonatosController.navigateArbitrosCollection}" disabled="#{campeonatosController.isArbitrosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{campeonatosController.items}"
-                         lazy="false"
-                         rowKey="#{item.idcampeonato}"
+                         value="#{campeonatosController.lazyItems}"
+                         lazy="true"
                          var="item"
                          paginator="true"
                          rows="10"
@@ -31,12 +30,12 @@
                          selection="#{campeonatosController.selected}"
                          filteredValue="#{campeonatosController.filteredItems}">
                 <!--
-                         To enable Lazy Loading, please copy/replace the following lines above,
+                         To disable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
                 
-                         value="HASH{campeonatosController.lazyItems}"
-                         lazy="true"
-                         rowKey="HASH{item.idcampeonato}"  <<< Remove this line
+                         value="HASH{campeonatosController.items}"
+                         lazy="false"
+                         rowKey="HASH{item.idcampeonato}"
                 -->
 
 

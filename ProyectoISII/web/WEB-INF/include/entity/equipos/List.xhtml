@@ -19,9 +19,8 @@
                 <p:menuitem value="#{miPaquete.EquiposMenuItem_partidosCollection}" icon="ui-icon-search"  action="#{equiposController.navigatePartidosCollection}" disabled="#{equiposController.isPartidosCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{equiposController.items}"
-                         lazy="false"
-                         rowKey="#{item.idequipo}"
+                         value="#{equiposController.lazyItems}"
+                         lazy="true"
                          var="item"
                          paginator="true"
                          rows="10"
@@ -30,12 +29,12 @@
                          selection="#{equiposController.selected}"
                          filteredValue="#{equiposController.filteredItems}">
                 <!--
-                         To enable Lazy Loading, please copy/replace the following lines above,
+                         To disable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
                 
-                         value="HASH{equiposController.lazyItems}"
-                         lazy="true"
-                         rowKey="HASH{item.idequipo}"  <<< Remove this line
+                         value="HASH{equiposController.items}"
+                         lazy="false"
+                         rowKey="HASH{item.idequipo}"
                 -->
 
 

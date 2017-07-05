@@ -18,9 +18,8 @@
                 <p:menuitem value="#{miPaquete.HorariosMenuItem_reservasCollection}" icon="ui-icon-search"  action="#{horariosController.navigateReservasCollection}" disabled="#{horariosController.isReservasCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{horariosController.items}"
-                         lazy="false"
-                         rowKey="#{item.idhorario}"
+                         value="#{horariosController.lazyItems}"
+                         lazy="true"
                          var="item"
                          paginator="true"
                          rows="10"
@@ -29,12 +28,12 @@
                          selection="#{horariosController.selected}"
                          filteredValue="#{horariosController.filteredItems}">
                 <!--
-                         To enable Lazy Loading, please copy/replace the following lines above,
+                         To disable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
                 
-                         value="HASH{horariosController.lazyItems}"
-                         lazy="true"
-                         rowKey="HASH{item.idhorario}"  <<< Remove this line
+                         value="HASH{horariosController.items}"
+                         lazy="false"
+                         rowKey="HASH{item.idhorario}"
                 -->
 
 
