@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorariosCreateDlg" widgetVar="HorariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{miPaquete.CreateHorariosTitle}" closeOnEscape="true">
+
+            <h:form id="HorariosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{horariosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{miPaquete.CreateHorariosLabel_idhorario}" for="idhorario" />
+                        <p:inputText id="idhorario" value="#{horariosController.selected.idhorario}" title="#{miPaquete.CreateHorariosTitle_idhorario}" required="true" requiredMessage="#{miPaquete.CreateHorariosRequiredMessage_idhorario}"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateHorariosLabel_descripcionhorario}" for="descripcionhorario" />
+                        <p:inputText id="descripcionhorario" value="#{horariosController.selected.descripcionhorario}" title="#{miPaquete.CreateHorariosTitle_descripcionhorario}" required="true" requiredMessage="#{miPaquete.CreateHorariosRequiredMessage_descripcionhorario}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateHorariosLabel_iniciohorario}" for="iniciohorario" />
+                        <p:calendar id="iniciohorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.iniciohorario}" title="#{miPaquete.CreateHorariosTitle_iniciohorario}" required="true" requiredMessage="#{miPaquete.CreateHorariosRequiredMessage_iniciohorario}" showOn="button"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateHorariosLabel_finhorario}" for="finhorario" />
+                        <p:calendar id="finhorario" pattern="MM/dd/yyyy" value="#{horariosController.selected.finhorario}" title="#{miPaquete.CreateHorariosTitle_finhorario}" required="true" requiredMessage="#{miPaquete.CreateHorariosRequiredMessage_finhorario}" showOn="button"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateHorariosLabel_idreserva}" for="idreserva" />
+                        <p:selectOneMenu id="idreserva" value="#{horariosController.selected.idreserva}" required="true" requiredMessage="#{miPaquete.CreateHorariosRequiredMessage_idreserva}" converter="reservasConverter">
+                            <f:selectItem itemLabel="#{miPaquete.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservasController.items}"
+                                           var="idreservaItem"
+                                           itemValue="#{idreservaItem}"
+                                           itemLabel="#{idreservaItem.idreserva.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horariosController.saveNew}" value="#{miPaquete.Save}" update="display,:HorariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('HorariosCreateDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('HorariosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

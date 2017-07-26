@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PropietariosListForm">
+
+        <p:panel header="#{miPaquete.ListPropietariosTitle}">
+            <p:contextMenu id="PropietariosDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('PropietariosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('PropietariosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('PropietariosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('PropietariosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{miPaquete.PropietariosMenuItem_canchasCollection}" icon="ui-icon-search"  action="#{propietariosController.navigateCanchasCollection}" disabled="#{propietariosController.isCanchasCollectionEmpty}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{propietariosController.items}"
+                         lazy="false"
+                         rowKey="#{item.cedulapropietarios}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{propietariosController.selected}"
+                         filteredValue="#{propietariosController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{propietariosController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.cedulapropietarios}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PropietariosDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PropietariosDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PropietariosListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.cedulapropietarios}" filterBy="#{item.cedulapropietarios}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListPropietariosTitle_cedulapropietarios}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedulapropietarios}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombrepropietarios}" filterBy="#{item.nombrepropietarios}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListPropietariosTitle_nombrepropietarios}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombrepropietarios}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.celularpropietarios}" filterBy="#{item.celularpropietarios}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListPropietariosTitle_celularpropietarios}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.celularpropietarios}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.mailpropietarios}" filterBy="#{item.mailpropietarios}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListPropietariosTitle_mailpropietarios}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.mailpropietarios}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{propietariosController.prepareCreate}" update=":PropietariosCreateForm" oncomplete="PF('PropietariosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":PropietariosViewForm" oncomplete="PF('PropietariosViewDialog').show()" disabled="#{empty propietariosController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":PropietariosEditForm" oncomplete="PF('PropietariosEditDialog').show()" disabled="#{empty propietariosController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{propietariosController.delete}" update=":growl,datalist" disabled="#{empty propietariosController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

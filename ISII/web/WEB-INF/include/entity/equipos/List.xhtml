@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="EquiposListForm">
+
+        <p:panel header="#{miPaquete.ListEquiposTitle}">
+            <p:contextMenu id="EquiposDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{miPaquete.Create}" onclick="document.getElementById('EquiposListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{miPaquete.View}" onclick="document.getElementById('EquiposListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{miPaquete.Edit}" onclick="document.getElementById('EquiposListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{miPaquete.Delete}" onclick="document.getElementById('EquiposListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{miPaquete.EquiposMenuItem_partidosCollection}" icon="ui-icon-search"  action="#{equiposController.navigatePartidosCollection}" disabled="#{equiposController.isPartidosCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="#{miPaquete.EquiposMenuItem_cedulajugador}" icon="ui-icon-search"  actionListener="#{equiposController.prepareCedulajugador}" update=":JugadoresViewForm" oncomplete="PF('JugadoresViewDialog').show()" disabled="#{empty equiposController.selected.cedulajugador}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{equiposController.items}"
+                         lazy="false"
+                         rowKey="#{item.idequipo}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{equiposController.selected}"
+                         filteredValue="#{equiposController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{equiposController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idequipo}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:EquiposDataTableContextMenu" listener="#{equiposController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:EquiposDataTableContextMenu" listener="#{equiposController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{equiposController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('EquiposListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idequipo}" filterBy="#{item.idequipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListEquiposTitle_idequipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idequipo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcionequipo}" filterBy="#{item.descripcionequipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListEquiposTitle_descripcionequipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionequipo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedulajugador.cedulajugador}" filterBy="#{item.cedulajugador.cedulajugador}">
+                    <f:facet name="header">
+                        <h:outputText value="#{miPaquete.ListEquiposTitle_cedulajugador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedulajugador.cedulajugador}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{miPaquete.Create}" actionListener="#{equiposController.prepareCreate}" update=":EquiposCreateForm" oncomplete="PF('EquiposCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{miPaquete.View}" update=":EquiposViewForm" oncomplete="PF('EquiposViewDialog').show()" disabled="#{empty equiposController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{miPaquete.Edit}" update=":EquiposEditForm" oncomplete="PF('EquiposEditDialog').show()" disabled="#{empty equiposController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{miPaquete.Delete}" actionListener="#{equiposController.delete}" update=":growl,datalist" disabled="#{empty equiposController.selected}">
+                <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/7/2017 8:53:30                             */
+/* Created on:     26/07/2017 10:54:13                          */
 /*==============================================================*/
 
 
@@ -17,8 +17,6 @@ drop table if exists EQUIPOS;
 drop table if exists HORARIOS;
 
 drop table if exists JUGADORES;
-
-drop table if exists JUGADORXEQUIPO;
 
 drop table if exists PARTIDOS;
 
@@ -45,6 +43,7 @@ create table ARBITROS
 create table CAMPEONATOS
 (
    IDCAMPEONATO         int not null,
+   IDRESERVA            int,
    RUCPATROCINADOR      char(13) not null,
    DESCRIPCIONCAMPEONATO varchar(30) not null,
    MAILCAMPEONATO       varchar(50) not null,
@@ -59,7 +58,6 @@ create table CAMPEONATOS
 create table CANCHAS
 (
    IDCANCHA             int not null,
-   IDPARTIDO            int,
    DESCRIPCIONCANCHA    varchar(50) not null,
    SECTORCANCHA         varchar(30) not null,
    primary key (IDCANCHA)
@@ -81,6 +79,7 @@ create table CANCHASXPROPIETARIO
 create table EQUIPOS
 (
    IDEQUIPO             int not null,
+   CEDULAJUGADOR        char(10) not null,
    DESCRIPCIONEQUIPO    varchar(40) not null,
    primary key (IDEQUIPO)
 );
@@ -91,6 +90,7 @@ create table EQUIPOS
 create table HORARIOS
 (
    IDHORARIO            int not null,
+   IDRESERVA            int not null,
    DESCRIPCIONHORARIO   varchar(50) not null,
    INICIOHORARIO        date not null,
    FINHORARIO           date not null,
@@ -106,17 +106,8 @@ create table JUGADORES
    NOMBREJUGADOR        varchar(50) not null,
    CELULARJUGADOR       bigint not null,
    MAILJUGADOR          varchar(50) not null,
+   CAPITAN              bool,
    primary key (CEDULAJUGADOR)
-);
-
-/*==============================================================*/
-/* Table: JUGADORXEQUIPO                                        */
-/*==============================================================*/
-create table JUGADORXEQUIPO
-(
-   IDEQUIPO             int not null,
-   CEDULAJUGADOR        char(10) not null,
-   primary key (IDEQUIPO, CEDULAJUGADOR)
 );
 
 /*==============================================================*/
@@ -127,7 +118,6 @@ create table PARTIDOS
    IDPARTIDO            int not null,
    IDEQUIPO             int not null,
    IDCANCHA             int,
-   IDRESERVA            int,
    FECHAPARTIDO         date not null,
    primary key (IDPARTIDO)
 );
@@ -160,49 +150,41 @@ create table PROPIETARIOS
 create table RESERVAS
 (
    IDRESERVA            int not null,
+   CEDULAJUGADOR        char(10),
    IDPARTIDO            int not null,
-   IDHORARIO            int not null,
-   IDCAMPEONATO         int not null,
-   CAPITANRESERVA       varchar(50) not null,
    primary key (IDRESERVA)
 );
 
 alter table ARBITROS add constraint FK_CONTROLA foreign key (IDCAMPEONATO)
       references CAMPEONATOS (IDCAMPEONATO) on delete restrict on update restrict;
 
-alter table CAMPEONATOS add constraint FK_CAMPEONATOSXPATROCINADORES foreign key (RUCPATROCINADOR)
+alter table CAMPEONATOS add constraint FK_ASOCIA foreign key (IDRESERVA)
+      references RESERVAS (IDRESERVA) on delete restrict on update restrict;
+
+alter table CAMPEONATOS add constraint FK_ORGANIZAN foreign key (RUCPATROCINADOR)
       references PATROCINADORES (RUCPATROCINADOR) on delete restrict on update restrict;
 
-alter table CANCHAS add constraint FK_UTILIZAN3 foreign key (IDPARTIDO)
-      references PARTIDOS (IDPARTIDO) on delete restrict on update restrict;
-
-alter table CANCHASXPROPIETARIO add constraint FK_CANCHASXPROPIETARIO foreign key (CEDULAPROPIETARIOS)
-      references PROPIETARIOS (CEDULAPROPIETARIOS) on delete restrict on update restrict;
-
-alter table CANCHASXPROPIETARIO add constraint FK_CANCHASXPROPIETARIO2 foreign key (IDCANCHA)
+alter table CANCHASXPROPIETARIO add constraint FK_CANCHASXPROPIETARIO foreign key (IDCANCHA)
       references CANCHAS (IDCANCHA) on delete restrict on update restrict;
 
-alter table JUGADORXEQUIPO add constraint FK_JUGADORXEQUIPO foreign key (IDEQUIPO)
-      references EQUIPOS (IDEQUIPO) on delete restrict on update restrict;
+alter table CANCHASXPROPIETARIO add constraint FK_CANCHASXPROPIETARIO2 foreign key (CEDULAPROPIETARIOS)
+      references PROPIETARIOS (CEDULAPROPIETARIOS) on delete restrict on update restrict;
 
-alter table JUGADORXEQUIPO add constraint FK_JUGADORXEQUIPO2 foreign key (CEDULAJUGADOR)
+alter table EQUIPOS add constraint FK_CONFORMAN foreign key (CEDULAJUGADOR)
       references JUGADORES (CEDULAJUGADOR) on delete restrict on update restrict;
+
+alter table HORARIOS add constraint FK_REGISTRAN foreign key (IDRESERVA)
+      references RESERVAS (IDRESERVA) on delete restrict on update restrict;
 
 alter table PARTIDOS add constraint FK_JUEGAN foreign key (IDEQUIPO)
       references EQUIPOS (IDEQUIPO) on delete restrict on update restrict;
 
-alter table PARTIDOS add constraint FK_TIENE2 foreign key (IDRESERVA)
-      references RESERVAS (IDRESERVA) on delete restrict on update restrict;
-
-alter table PARTIDOS add constraint FK_UTILIZAN2 foreign key (IDCANCHA)
+alter table PARTIDOS add constraint FK_UTILIZAN foreign key (IDCANCHA)
       references CANCHAS (IDCANCHA) on delete restrict on update restrict;
 
-alter table RESERVAS add constraint FK_ASOCIA foreign key (IDCAMPEONATO)
-      references CAMPEONATOS (IDCAMPEONATO) on delete restrict on update restrict;
+alter table RESERVAS add constraint FK_ORGANIZA foreign key (CEDULAJUGADOR)
+      references JUGADORES (CEDULAJUGADOR) on delete restrict on update restrict;
 
-alter table RESERVAS add constraint FK_REGISTRAN foreign key (IDHORARIO)
-      references HORARIOS (IDHORARIO) on delete restrict on update restrict;
-
-alter table RESERVAS add constraint FK_TIENE3 foreign key (IDPARTIDO)
+alter table RESERVAS add constraint FK_TIENE foreign key (IDPARTIDO)
       references PARTIDOS (IDPARTIDO) on delete restrict on update restrict;
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JugadoresCreateDlg" widgetVar="JugadoresCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{miPaquete.CreateJugadoresTitle}" closeOnEscape="true">
+
+            <h:form id="JugadoresCreateForm">
+
+                <h:panelGroup id="display" rendered="#{jugadoresController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{miPaquete.CreateJugadoresLabel_cedulajugador}" for="cedulajugador" />
+                        <p:inputText id="cedulajugador" value="#{jugadoresController.selected.cedulajugador}" title="#{miPaquete.CreateJugadoresTitle_cedulajugador}" required="true" requiredMessage="#{miPaquete.CreateJugadoresRequiredMessage_cedulajugador}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateJugadoresLabel_nombrejugador}" for="nombrejugador" />
+                        <p:inputText id="nombrejugador" value="#{jugadoresController.selected.nombrejugador}" title="#{miPaquete.CreateJugadoresTitle_nombrejugador}" required="true" requiredMessage="#{miPaquete.CreateJugadoresRequiredMessage_nombrejugador}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateJugadoresLabel_celularjugador}" for="celularjugador" />
+                        <p:inputText id="celularjugador" value="#{jugadoresController.selected.celularjugador}" title="#{miPaquete.CreateJugadoresTitle_celularjugador}" required="true" requiredMessage="#{miPaquete.CreateJugadoresRequiredMessage_celularjugador}"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateJugadoresLabel_mailjugador}" for="mailjugador" />
+                        <p:inputText id="mailjugador" value="#{jugadoresController.selected.mailjugador}" title="#{miPaquete.CreateJugadoresTitle_mailjugador}" required="true" requiredMessage="#{miPaquete.CreateJugadoresRequiredMessage_mailjugador}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{miPaquete.CreateJugadoresLabel_capitan}" for="capitan" />
+                        <p:selectBooleanCheckbox id="capitan" value="#{jugadoresController.selected.capitan}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{jugadoresController.saveNew}" value="#{miPaquete.Save}" update="display,:JugadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('JugadoresCreateDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('JugadoresCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

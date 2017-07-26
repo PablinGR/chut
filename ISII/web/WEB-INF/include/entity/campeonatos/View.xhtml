@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampeonatosViewDlg" widgetVar="CampeonatosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.ViewCampeonatosTitle}" closeOnEscape="true">
+
+            <h:form id="CampeonatosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{campeonatosController.selected != null}">
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_idcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.idcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_idcampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_descripcioncampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.descripcioncampeonato}" title="#{miPaquete.ViewCampeonatosTitle_descripcioncampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_mailcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.mailcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_mailcampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_celularcampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.celularcampeonato}" title="#{miPaquete.ViewCampeonatosTitle_celularcampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_premiocampeonato}"/>
+                        <h:outputText value="#{campeonatosController.selected.premiocampeonato}" title="#{miPaquete.ViewCampeonatosTitle_premiocampeonato}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_idreserva}"/>
+                        <h:outputText value="#{campeonatosController.selected.idreserva.idreserva}"/>
+
+                        <h:outputText value="#{miPaquete.ViewCampeonatosLabel_rucpatrocinador}"/>
+                        <h:outputText value="#{campeonatosController.selected.rucpatrocinador.descripcionpatrocinador}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{miPaquete.Close}" onclick="PF('CampeonatosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="JugadoresEditDlg" widgetVar="JugadoresEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{miPaquete.EditJugadoresTitle}" closeOnEscape="true">
+
+            <h:form id="JugadoresEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{jugadoresController.selected != null}">
+
+
+                        <h:outputLabel value="#{miPaquete.EditJugadoresLabel_cedulajugador}" for="cedulajugador" />
+                        <h:outputText id="cedulajugador" value="#{jugadoresController.selected.cedulajugador}" />
+
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_nombrejugador}" for="nombrejugador" />
+                        <p:inputText id="nombrejugador" value="#{jugadoresController.selected.nombrejugador}" title="#{miPaquete.EditJugadoresTitle_nombrejugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_nombrejugador}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_celularjugador}" for="celularjugador" />
+                        <p:inputText id="celularjugador" value="#{jugadoresController.selected.celularjugador}" title="#{miPaquete.EditJugadoresTitle_celularjugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_celularjugador}"/>
+
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_mailjugador}" for="mailjugador" />
+                        <p:inputText id="mailjugador" value="#{jugadoresController.selected.mailjugador}" title="#{miPaquete.EditJugadoresTitle_mailjugador}" required="true" requiredMessage="#{miPaquete.EditJugadoresRequiredMessage_mailjugador}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{miPaquete.EditJugadoresLabel_capitan}" for="capitan" />
+                        <p:selectBooleanCheckbox id="capitan" value="#{jugadoresController.selected.capitan}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{jugadoresController.save}" value="#{miPaquete.Save}" update="display,:JugadoresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('JugadoresEditDialog'));">
+                        <p:confirm header="#{miPaquete.ConfirmationHeader}" message="#{miPaquete.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{miPaquete.Cancel}" oncomplete="PF('JugadoresEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
